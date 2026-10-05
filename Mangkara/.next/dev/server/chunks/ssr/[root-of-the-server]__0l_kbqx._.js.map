@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/user/Documents/mangkara-app/mangkara-app/Mangkara/src/app/page.tsx"],"sourcesContent":["export default function Home() {\r\n    return (\r\n        <main>\r\n            <h1>Selamat Datang di Mangkara</h1>\r\n            <p>Project Mangkara berhasil dijalankan.</p>\r\n        </main>\r\n    );\r\n}"],"names":["Home"],"mappings":";;;;;;AAAe,SAASA;IACpB,qBACI,0PAAC;;0BACG,0PAAC;0BAAG;;;;;;0BACJ,0PAAC;0BAAE;;;;;;;;;;;;AAGf"}}]
+}

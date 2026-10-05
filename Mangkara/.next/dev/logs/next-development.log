@@ -1,0 +1,18 @@
+{"timestamp":"00:00:04.333","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:04.334","source":"Server","level":"LOG","message":"  We detected TypeScript in your project and created a tsconfig.json file for you."}
+{"timestamp":"00:00:05.094","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:01:02.182","source":"Server","level":"LOG","message":"○ Compiling / ..."}
+{"timestamp":"00:01:06.843","source":"Server","level":"ERROR","message":"⨯ Error: The default export is not a React Component in \"/layout\""}
+{"timestamp":"00:01:06.868","source":"Server","level":"ERROR","message":"⨯ Error: The default export is not a React Component in \"/layout\""}
+{"timestamp":"00:01:09.884","source":"Server","level":"LOG","message":"○ Compiling /_error ..."}
+{"timestamp":"00:01:12.311","source":"Browser","level":"ERROR","message":"Uncaught Error: The default export is not a React Component in \"/layout\""}
+{"timestamp":"00:01:12.312","source":"Server","level":"ERROR","message":"[browser] \"\\u001b[31mUncaught Error: The default export is not a React Component in \\\"/layout\\\"\\u001b[39m\""}
+{"timestamp":"00:02:13.107","source":"Server","level":"ERROR","message":"⨯ Error: The default export is not a React Component in \"/page\""}
+{"timestamp":"00:02:13.122","source":"Server","level":"ERROR","message":"⨯ Error: The default export is not a React Component in \"/page\""}
+{"timestamp":"00:02:14.674","source":"Browser","level":"ERROR","message":"Uncaught Error: The default export is not a React Component in \"/page\""}
+{"timestamp":"00:02:14.681","source":"Server","level":"ERROR","message":"[browser] \"\\u001b[31mUncaught Error: The default export is not a React Component in \\\"/page\\\"\\u001b[39m\""}
+{"timestamp":"00:02:48.614","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:06:39.425","source":"Server","level":"LOG","message":"✓ Compiled in 3.7s"}
+{"timestamp":"00:09:48.264","source":"Server","level":"LOG","message":"✓ Compiled in 1379ms"}
+{"timestamp":"00:09:56.638","source":"Browser","level":"INFO","message":"Download the React DevTools for a better development experience: https://react.dev/link/react-devtools"}
+{"timestamp":"00:13:08.318","source":"Server","level":"LOG","message":"✓ Compiled in 1069ms"}
