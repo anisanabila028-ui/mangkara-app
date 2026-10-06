@@ -30,8 +30,12 @@ export default function Sidebar() {
             <div>
                 {/* Logo */}
                 <div className="flex items-center gap-2 px-3 py-4 mb-6">
-                    <div className="w-7 h-7 bg-blue-500 rounded-md flex items-center justify-center text-white font-bold text-xs">
-                        M
+                    <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl">
+                        <img
+                            src="/logomangkara.jpeg"
+                            alt="Logo Mangkar"
+                            className="h-full w-full object-cover"
+                        />
                     </div>
                     <span className="font-bold text-blue-600 text-lg tracking-wide">MANGKARA</span>
                 </div>
@@ -47,8 +51,8 @@ export default function Sidebar() {
                                 key={item.href}
                                 href={item.href}
                                 className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition ${isActive
-                                        ? "bg-blue-50 text-blue-600"
-                                        : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                                    ? "bg-blue-50 text-blue-600"
+                                    : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                                     }`}
                             >
                                 <Icon className={`w-4 h-4 ${isActive ? "text-blue-600" : "text-gray-400"}`} />

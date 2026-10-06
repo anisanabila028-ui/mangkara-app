@@ -1,140 +1,232 @@
-import { BookOpen, Clock, MapPin, Star, User } from "lucide-react";
+"use client";
 
-const data = {
-    nama: "PT Digital Indonesia",
-    kota: "Bandung",
-    rating: 4.6,
-    jumlahUlasan: 120,
-    tag: ["Web Development", "IT"],
-    deskripsi:
-        "PT Digital Indonesia adalah perusahaan teknologi terkemuka yang berfokus pada pengembangan perangkat lunak berkualitas tinggi, solusi IT enterprise, dan transformasi digital. Kami membuka kesempatan berharga bagi siswa/siswi SMK untuk belajar, berkontribusi, dan berkembang langsung bersama tim engineer profesional kami.",
-    jurusan: ["RPL", "TKJ", "SI"],
-    kuotaTersedia: 5,
-    kuotaTotal: 10,
-    durasi: "3 - 6 Bulan",
-    alamat: "Jl. Merdeka No. 123, Bandung, Jawa Barat, Indonesia",
-};
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import {
+    MapPin,
+    Star,
+    Filter,
+    ChevronLeft,
+    ChevronRight,
+    Building2,
+} from "lucide-react";
 
-function InfoItem({
-    icon,
-    label,
-    value,
-}: {
-    icon: React.ReactNode;
-    label: string;
-    value: string;
-}) {
-    return (
-        <div className="flex items-center gap-3.5">
-            <span className="text-gray-600">{icon}</span>
-            <div>
-                <p className="text-[10px] text-gray-500">{label}</p>
-                <p className="text-xs font-semibold">{value}</p>
-            </div>
-        </div>
+const dataTempat = [
+    {
+        nama: "PT Digital Indonesia",
+        lokasi: "Bandung",
+        kuota: "5",
+        rating: "4.6",
+    },
+    {
+        nama: "CV Kreatif Nusantara",
+        lokasi: "Cimahi",
+        kuota: "3",
+        rating: "4.4",
+    },
+    {
+        nama: "Telkom Indonesia",
+        lokasi: "Jakarta",
+        kuota: "2",
+        rating: "4.3",
+    },
+    {
+        nama: "PT Solusi Digital",
+        lokasi: "Bandung",
+        kuota: "4",
+        rating: "4.5",
+    },
+];
+
+export default function DaftarPKLPage() {
+    const router = useRouter();
+
+    // Halaman yang sedang aktif
+    const [currentPage, setCurrentPage] = useState(1);
+
+    // Untuk sekarang 4 data tampil dalam 1 halaman
+    const itemsPerPage = 4;
+
+    // Jumlah halaman otomatis dihitung dari jumlah data
+    const totalPages = Math.ceil(
+        dataTempat.length / itemsPerPage
     );
-}
 
-export default function DetailPKLPage() {
-    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-        data.alamat
-    )}`;
+    // Menentukan data yang ditampilkan di halaman aktif
+    const startIndex =
+        (currentPage - 1) * itemsPerPage;
+
+    const currentData = dataTempat.slice(
+        startIndex,
+        startIndex + itemsPerPage
+    );
+
+    // Fungsi pindah halaman
+    const goToPage = (page: number) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
 
     return (
-        <div className="mx-auto max-w-[1100px] space-y-5">
+        <div className="min-h-screen bg-[#f4f8ff]">
 
-            <section className="flex flex-wrap items-center gap-5 rounded-xl border border-gray-200 bg-white p-5">
-                <div
-                    role="img"
-                    aria-label={`Kantor ${data.nama}`}
-                    className="h-16 w-[88px] rounded-md bg-gradient-to-br from-slate-400 to-slate-600"
-                />
-                <div>
-                    <h1 className="text-[22px] font-bold">{data.nama}</h1>
-                    <div className="mt-2 flex items-center gap-3.5 text-xs text-gray-500">
-                        <span className="flex items-center gap-1">
-                            <MapPin size={12} /> {data.kota}
-                        </span>
-                        <span className="flex items-center gap-1 rounded bg-amber-100 px-1.5 py-px font-semibold text-amber-600">
-                            <Star size={11} fill="currentColor" /> {data.rating}
-                        </span>
-                        <span>({data.jumlahUlasan} ulasan)</span>
-                    </div>
-                </div>
-                <div className="flex gap-2 self-start md:ml-auto">
-                    {data.tag.map((t, i) => (
-                        <span
-                            key={t}
-                            className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium ${i === 0 ? "bg-blue-50 text-blue-600" : "bg-gray-100 text-gray-900"
-                                }`}
-                        >
-                            {t}
-                        </span>
-                    ))}
-                </div>
-            </section>
+            {/* CONTENT */}
+            <main className="min-h-[calc(100vh-80px)] bg-[#dcecff] px-10 py-7">
 
-            <div className="grid items-start gap-5 lg:grid-cols-[1fr_280px]">
-                <div className="space-y-4">
-                    <section className="rounded-xl border border-gray-200 bg-white p-5">
-                        <h2 className="mb-3 text-sm font-bold">Deskripsi</h2>
-                        <p className="text-xs leading-relaxed text-gray-700">
-                            {data.deskripsi}
+                {/* JUDUL + FILTER */}
+                <div className="mb-5 flex items-center justify-between">
+
+                    <div>
+                        <h1 className="text-2xl font-bold text-[#263238]">
+                            Daftar Tempat PKL
+                        </h1>
+
+                        <p className="mt-1 text-sm text-gray-600">
+                            Menampilkan daftar tempat PKL aktif dari berbagai bidang industri.
                         </p>
-                    </section>
-
-                    <section className="rounded-xl border border-gray-200 bg-white p-5">
-                        <h2 className="mb-3 text-sm font-bold">Informasi Magang</h2>
-                        <div className="space-y-3.5">
-                            <InfoItem
-                                icon={<BookOpen size={18} />}
-                                label="Jurusan Tersedia"
-                                value={data.jurusan.join(", ")}
-                            />
-                            <InfoItem
-                                icon={<User size={18} />}
-                                label="Kuota"
-                                value={`${data.kuotaTersedia} dari ${data.kuotaTotal} Tersedia`}
-                            />
-                            <InfoItem
-                                icon={<Clock size={18} />}
-                                label="Durasi"
-                                value={data.durasi}
-                            />
-                        </div>
-                    </section>
-                </div>
-
-
-                <aside className="rounded-xl border border-gray-200 bg-white p-5">
-                    <h2 className="mb-3 text-sm font-bold">Lokasi Perusahaan</h2>
-                    <p className="mb-3 text-[11px] leading-normal text-gray-500">
-                        {data.alamat}
-                    </p>
-                    <div
-                        role="img"
-                        aria-label="Peta lokasi"
-                        className="mb-3.5 grid h-36 place-items-center rounded-md bg-blue-100 text-[11px] text-gray-700"
-                    >
-
-                        {data.kota}, Jawa Barat
                     </div>
-                    <a
-                        href={mapsUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mb-3.5 block rounded-md bg-gray-100 py-2.5 text-center text-xs font-semibold hover:bg-gray-200"
-                    >
-                        Lihat di Google Maps
-                    </a>
+
+                    {/* FILTER */}
                     <button
                         type="button"
-                        className="w-full rounded-md bg-blue-600 py-3 text-xs font-semibold text-white hover:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                        className="flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm text-gray-600 shadow-sm transition hover:bg-gray-50"
                     >
-                        Ajukan PKL Sekarang
+                        <Filter size={16} />
+                        Filter
                     </button>
-                </aside>
-            </div>
+
+                </div>
+
+                {/* DAFTAR PERUSAHAAN */}
+                <div className="space-y-3">
+
+                    {currentData.map((tempat, index) => (
+                        <div
+                            key={index}
+                            className="flex min-h-[70px] items-center justify-between rounded-lg bg-white px-4 py-3 shadow-sm transition hover:shadow-md"
+                        >
+
+                            {/* BAGIAN KIRI */}
+                            <div className="flex items-center gap-4">
+
+                                {/* ICON PERUSAHAAN */}
+                                <div className="flex h-12 w-14 items-center justify-center overflow-hidden rounded-md bg-gray-100">
+                                    <Building2
+                                        size={28}
+                                        color="#78909c"
+                                    />
+                                </div>
+
+                                {/* INFORMASI PERUSAHAAN */}
+                                <div>
+                                    <h2 className="text-base font-bold text-[#263238]">
+                                        {tempat.nama}
+                                    </h2>
+
+                                    <div className="mt-1 flex items-center gap-4 text-xs text-gray-600">
+
+                                        {/* LOKASI */}
+                                        <span className="flex items-center gap-1">
+                                            <MapPin size={13} />
+                                            {tempat.lokasi}
+                                        </span>
+
+                                        {/* KUOTA */}
+                                        <span>
+                                            Sisa Kuota: {tempat.kuota}
+                                        </span>
+
+                                        {/* RATING */}
+                                        <span className="flex items-center gap-1 text-[#f5a400]">
+                                            <Star
+                                                size={13}
+                                                fill="#f5a400"
+                                            />
+                                            {tempat.rating}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* TOMBOL DETAIL */}
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    router.push("/dashboard/detail")
+                                }
+                                className="rounded-md border border-[#1683ed] bg-white px-4 py-2 text-xs font-medium text-[#1683ed] transition hover:bg-[#1683ed] hover:text-white"
+                            >
+                                Lihat Detail
+                            </button>
+
+                        </div>
+                    ))}
+
+                </div>
+
+                {/* PAGINATION */}
+                <div className="mt-5 flex justify-center gap-2">
+
+                    {/* SEBELUMNYA */}
+                    <button
+                        type="button"
+                        onClick={() =>
+                            goToPage(currentPage - 1)
+                        }
+                        disabled={currentPage === 1}
+                        className="flex h-10 w-10 items-center justify-center rounded bg-white text-gray-500 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                        <ChevronLeft size={18} />
+                    </button>
+
+                    {/* NOMOR HALAMAN */}
+                    {Array.from(
+                        { length: totalPages },
+                        (_, index) => {
+                            const page = index + 1;
+
+                            return (
+                                <button
+                                    key={page}
+                                    type="button"
+                                    onClick={() =>
+                                        goToPage(page)
+                                    }
+                                    className={`h-10 w-10 rounded text-sm transition ${currentPage === page
+                                            ? "bg-[#1478df] text-white"
+                                            : "bg-white text-gray-600 hover:bg-gray-100"
+                                        }`}
+                                >
+                                    {page}
+                                </button>
+                            );
+                        }
+                    )}
+
+                    {/* BERIKUTNYA */}
+                    <button
+                        type="button"
+                        onClick={() =>
+                            goToPage(currentPage + 1)
+                        }
+                        disabled={
+                            currentPage === totalPages
+                        }
+                        className="flex h-10 w-10 items-center justify-center rounded bg-white text-gray-500 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                        <ChevronRight size={18} />
+                    </button>
+
+                </div>
+
+                {/* BAGIAN BAWAH */}
+                <div className="mt-8 h-20 overflow-hidden rounded-b-lg">
+                    <div className="h-full w-full bg-gradient-to-t from-[#d3e7ff] to-transparent" />
+                </div>
+
+            </main>
         </div>
     );
 }
