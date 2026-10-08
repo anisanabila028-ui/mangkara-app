@@ -1,206 +1,155 @@
 "use client";
 
-"use client";
-
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import {
-    Bell,
-    BriefcaseBusiness,
-    Building2,
-    ChevronDown,
-    Clock3,
-    FileText,
-    HelpCircle,
-    Home as HomeIcon,
-    MapPin,
-    Menu,
-    Search,
-    Settings,
-    UserCircle,
-    Users,
-} from "lucide-react";
+import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 
-export default function Home() {
+export default function LoginPage() {
+    const [showPassword, setShowPassword] = useState(false);
+
     return (
-        <div className="app-container">
-            {/* SIDEBAR */}
-            <aside className="sidebar">
-                <div className="logo">
-                    <div className="logo-icon">M</div>
-                    <span>MANGKARA</span>
-                </div>
+        <main className="min-h-screen w-full bg-[#eff6ff] flex items-center justify-center px-4 py-6 sm:px-6">
+            <div className="w-full max-w-[750px]">
 
-                <nav className="sidebar-menu">
-                    <a href="#" className="menu-item">
-                        <HomeIcon size={17} />
-                        <span>Beranda</span>
-                    </a>
 
-                    <a href="#" className="menu-item active">
-                        <BriefcaseBusiness size={17} />
-                        <span>Daftar Tempat PKL</span>
-                    </a>
+                {/* Card */}
+                <div className="w-full max-w-[660px] bg-white rounded-lg px-5 py-8 sm:px-10 sm:py-10 md:px-12 md:py-11">
 
-                    <a href="#" className="menu-item">
-                        <Building2 size={17} />
-                        <span>Rekomendasi</span>
-                    </a>
+                    <div>
+                        {/* Logo */}
+                        <div className="flex items-center justify-center gap-1 mb-1">
+                            <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl">
+                                <img
+                                    src="/logmangkara.png"
+                                    alt="Logo Mangkar"
+                                    className="h-full w-full object-cover"
+                                />
+                            </div>
+                            <span className="font-bold text-blue-600 text-lg tracking-wide">MANGKARA</span>
+                        </div>
+                    </div>
 
-                    <a href="#" className="menu-item">
-                        <Search size={17} />
-                        <span>Cari Tempat PKL</span>
-                    </a>
+                    {/* Judul */}
+                    <div className="text-center">
+                        <h1 className="text-[#263238] font-bold text-[22px]">
+                            Masuk ke Mangkara
+                        </h1>
 
-                    <a href="#" className="menu-item">
-                        <FileText size={17} />
-                        <span>Ulasan</span>
-                    </a>
+                        <p className="text-[#718096] text-[12px] mt-2">
+                            Temukan PKL yang sesuai dengan jurusanmu
+                        </p>
+                    </div>
 
-                    <a href="#" className="menu-item">
-                        <UserCircle size={17} />
-                        <span>Akun</span>
-                    </a>
+                    {/* Form */}
+                    <form className="mt-7">
 
-                    <a href="#" className="menu-item">
-                        <HelpCircle size={17} />
-                        <span>Bantuan</span>
-                    </a>
-                </nav>
-            </aside>
+                        {/* Email */}
+                        <div>
+                            <label
+                                htmlFor="email"
+                                className="block text-[#4a5568] text-[12px] font-medium mb-2"
+                            >
+                                Email
+                            </label>
 
-            {/* MAIN */}
-            <main className="main-content">
-                {/* TOPBAR */}
-                <header className="topbar">
-                    <button className="icon-button">
-                        <Menu size={21} />
+                            <div className="relative">
+
+                                <Mail
+                                    size={15}
+                                    className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9ca3af]"
+                                />
+
+                                <input
+                                    id="email"
+                                    type="email"
+                                    placeholder="Masukan Email Anda"
+                                    className="w-full h-[34px] rounded-[8px] border border-[#d9d9d9] pl-11 pr-3 text-[12px] outline-none focus:border-[#2f8de4]"
+                                />
+
+                            </div>
+                        </div>
+
+                        {/* Password */}
+                        <div className="mt-3">
+
+                            <label
+                                htmlFor="password"
+                                className="block text-[#4a5568] text-[12px] font-medium mb-2"
+                            >
+                                Password
+                            </label>
+
+                            <div className="relative">
+
+                                <Lock
+                                    size={15}
+                                    className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9ca3af]"
+                                />
+
+                                <input
+                                    id="password"
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="Minimal 6 karakter"
+                                    className="w-full h-[34px] rounded-[8px] border border-[#d9d9d9] pl-11 pr-10 text-[12px] outline-none focus:border-[#2f8de4]"
+                                />
+
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#777]"
+                                >
+                                    {showPassword ? (
+                                        <EyeOff size={15} />
+                                    ) : (
+                                        <Eye size={15} />
+                                    )}
+                                </button>
+
+                            </div>
+                        </div>
+
+                        {/* Tombol Masuk */}
+                        <button
+                            type="submit"
+                            className="w-full h-[35px] mt-4 bg-[#2f8de4] hover:bg-[#2580d3] text-white text-[12px] font-semibold rounded-[8px]"
+                        >
+                            Masuk
+                        </button>
+
+                    </form>
+
+                    {/* Atau */}
+                    <div className="flex items-center gap-4 my-7">
+
+                        <div className="flex-1 h-px bg-[#dddddd]" />
+
+                        <span className="text-[#888888] text-[11px]">
+                            atau
+                        </span>
+
+                        <div className="flex-1 h-px bg-[#dddddd]" />
+
+                    </div>
+
+                    {/* Google */}
+                    <button
+                        type="button"
+                        className="w-full h-[35px] border border-[#d9d9d9] rounded-[8px] flex items-center justify-center gap-5 text-[12px] font-semibold text-[#333] hover:bg-gray-50"
+                    >
+                        <img
+                            src="/ggl.png"
+                            alt="Google"
+                            className="w-4 h-4 object-contain"
+                        />
+
+                        <span>
+                            Masuk dengan Google
+                        </span>
                     </button>
 
-                    <div className="topbar-right">
-                        <Bell size={19} className="bell" />
-                        <div className="profile">
-                            <UserCircle size={30} />
-                            <ChevronDown size={15} />
-                        </div>
-                    </div>
-                </header>
-
-                {/* CONTENT */}
-                <section className="content">
-                    {/* COMPANY HEADER */}
-                    <div className="company-header">
-                        <div className="company-image">
-                            <Building2 size={35} />
-                        </div>
-
-                        <div className="company-title">
-                            <h1>PT Digital Indonesia</h1>
-
-                            <div className="company-info">
-                                <span>
-                                    <MapPin size={13} />
-                                    Bandung
-                                </span>
-
-                                <span className="rating">
-                                    ★ 4.6
-                                </span>
-
-                                <span>(120 ulasan)</span>
-                            </div>
-                        </div>
-
-                        <div className="tags">
-                            <span>Web Development</span>
-                            <span>IT</span>
-                        </div>
-                    </div>
-
-                    <div className="detail-grid">
-                        {/* LEFT CONTENT */}
-                        <div className="left-column">
-                            {/* DESKRIPSI */}
-                            <div className="card">
-                                <h2>Deskripsi</h2>
-
-                                <p>
-                                    PT Digital Indonesia adalah perusahaan teknologi terkemuka
-                                    yang berfokus pada pengembangan perangkat lunak berkualitas
-                                    tinggi, solusi IT enterprise, dan transformasi digital.
-                                    Kami membuka kesempatan berharga bagi siswa/siswi SMK untuk
-                                    belajar, berkontribusi, dan berkembang langsung bersama tim
-                                    engineer profesional kami.
-                                </p>
-                            </div>
-
-                            {/* INFORMASI MAGANG */}
-                            <div className="card">
-                                <h2>Informasi Magang</h2>
-
-                                <div className="intern-info">
-                                    <div className="info-row">
-                                        <Users size={18} />
-                                        <div>
-                                            <small>Jurusan Tersedia</small>
-                                            <strong>RPL, TKJ, SI</strong>
-                                        </div>
-                                    </div>
-
-                                    <div className="info-row">
-                                        <BriefcaseBusiness size={18} />
-                                        <div>
-                                            <small>Kuota</small>
-                                            <strong>5 dari 10 Tersedia</strong>
-                                        </div>
-                                    </div>
-
-                                    <div className="info-row">
-                                        <Clock3 size={18} />
-                                        <div>
-                                            <small>Durasi</small>
-                                            <strong>3 - 6 Bulan</strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* RIGHT CONTENT */}
-                        <div className="right-column">
-                            <div className="location-card">
-                                <h2>Lokasi Perusahaan</h2>
-
-                                <p>
-                                    Jl. Merdeka No. 123, Bandung, Jawa Barat, Indonesia
-                                </p>
-
-                                <div className="map">
-                                    <div className="map-placeholder">
-                                        <MapPin size={35} />
-                                        <span>Lokasi Perusahaan</span>
-                                    </div>
-                                </div>
-
-                                <button className="maps-button">
-                                    Lihat di Google Maps
-                                </button>
-
-                                <button className="apply-button">
-                                    Ajukan PKL Sekarang
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* ORNAMEN BAWAH */}
-                <div className="bottom-decoration">
-                    <span>❀</span>
-                    <div className="wave"></div>
-                    <span>❀</span>
                 </div>
-            </main>
-        </div>
+            </div>
+
+
+        </main >
     );
 }
