@@ -1,54 +1,58 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Bell, User, Menu } from "lucide-react";
+import Sidebar from "./sidebar";
 
-export default function Topbar({
-    onMenuClick,
-}: {
-    onMenuClick: () => void;
-}) {
-    return (
-        <header className="sticky top-0 z-30 flex h-20 w-full items-center justify-between border-b border-slate-200 bg-white px-6">
+export default function Topbar() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-            {/* TOMBOL MENU */}
-            <button
-                type="button"
-                onClick={onMenuClick}
-                aria-label="Buka atau tutup sidebar"
-                className="flex h-12 w-12 items-center justify-center rounded-lg text-slate-700 transition hover:bg-slate-100"
-            >
-                <Menu size={32} strokeWidth={2} />
-            </button>
+  return (
+    <>
+      <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-slate-200 bg-white px-6">
+        {/* SISI KIRI: Tombol Hamburger & Logo MANGKARA */}
+        <div className="flex items-center gap-4">
+          <button
+            type="button"
+            onClick={() => setIsSidebarOpen((prev) => !prev)}
+            aria-label="Buka atau tutup sidebar"
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-700 transition hover:bg-slate-100"
+          >
+            <Menu size={24} />
+          </button>
 
-            {/* BAGIAN KANAN */}
-            <div className="flex items-center gap-4">
-
-                {/* NOTIFIKASI */}
-                <button
-                    type="button"
-                    aria-label="Notifikasi"
-                    className="relative rounded-full p-2 text-slate-500 transition hover:bg-slate-100"
-                >
-                    <Bell className="h-6 w-6" />
-
-                    <span className="absolute right-1.5 top-1.5 h-2.5 w-2.5 rounded-full bg-red-500" />
-                </button>
-
-                {/* PEMBATAS */}
-                <div className="h-8 w-px bg-slate-200" />
-
-                {/* USER */}
-                <div className="flex cursor-pointer items-center gap-3">
-
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-blue-100 text-blue-600">
-                        <User className="h-6 w-6" />
-                    </div>
-
-
-
-                </div>
+          {/* LOGO MANGKARA */}
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-500 font-extrabold text-white">
+              M
             </div>
-        </header>
-    );
+            <span className="text-lg font-extrabold tracking-wider text-sky-600">
+              MANGKARA
+            </span>
+          </div>
+        </div>
+
+        {/* SISI KANAN: Lonceng Notifikasi & Profile User */}
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            aria-label="Notifikasi"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition hover:bg-slate-200"
+          >
+            <Bell size={20} />
+          </button>
+
+          <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-blue-500 text-white shadow-sm transition hover:bg-blue-600">
+            <User size={22} />
+          </div>
+        </div>
+      </header>
+
+      {/* SIDEBAR LANGSUNG DIPANGGUL DI SINI */}
+      <Sidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+      />
+    </>
+  );
 }
