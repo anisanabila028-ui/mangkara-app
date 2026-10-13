@@ -22,11 +22,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const menuItems = [
     { icon: Home, label: "Beranda", href: "/dashboard/beranda" },
     { icon: Building2, label: "Daftar Tempat PKL", href: "/dashboard/daftar-pkl" },
-    { icon: ThumbsUp, label: "Rekomendasi", href: "/dashboard/rekomendasi" },
     { icon: Search, label: "Cari Tempat PKL", href: "/dashboard/cari" },
     { icon: MessageSquare, label: "Ulasan", href: "/dashboard/ulasan" },
     { icon: User, label: "Akun", href: "/dashboard/akun" },
-    { icon: HelpCircle, label: "Bantuan", href: "/dashboard/bantuan" },
   ];
 
   return (
