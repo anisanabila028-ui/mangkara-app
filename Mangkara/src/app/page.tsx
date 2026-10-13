@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
-
+import { signIn } from "next-auth/react";
 export default function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
 
@@ -133,6 +133,11 @@ export default function LoginPage() {
                     {/* Google */}
                     <button
                         type="button"
+                        onClick={() =>
+                            signIn("google", {
+                                redirectTo: "/dashboard",
+                            })
+                        }
                         className="w-full h-[35px] border border-[#d9d9d9] rounded-[8px] flex items-center justify-center gap-5 text-[12px] font-semibold text-[#333] hover:bg-gray-50"
                     >
                         <img
