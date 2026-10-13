@@ -9,46 +9,56 @@ export default function Topbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-slate-200 bg-white px-6">
-        {/* SISI KIRI: Tombol Hamburger & Logo MANGKARA */}
-        <div className="flex items-center gap-4">
+      <header className="sticky top-0 z-30 flex h-14 w-full items-center justify-between border-b border-slate-200 bg-white px-3 sm:h-16 sm:px-6">
+        {/* SISI KIRI: Hamburger dan Logo */}
+        <div className="flex min-w-0 items-center gap-2 sm:gap-4">
           <button
             type="button"
             onClick={() => setIsSidebarOpen((prev) => !prev)}
             aria-label="Buka atau tutup sidebar"
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-700 transition hover:bg-slate-100"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-700 transition hover:bg-slate-100 sm:h-10 sm:w-10"
           >
-            <Menu size={24} />
+            <Menu size={20} className="sm:hidden" />
+            <Menu size={24} className="hidden sm:block" />
           </button>
 
           {/* LOGO MANGKARA */}
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-500 font-extrabold text-white">
-              M
-            </div>
-            <span className="text-lg font-extrabold tracking-wider text-sky-600">
+          <div className="flex min-w-0 items-center gap-2">
+            <img
+              src="/logomangkara.jpeg"
+              alt="Logo Mangkara"
+              className="h-7 w-7 shrink-0 rounded-md object-contain sm:h-8 sm:w-8"
+            />
+
+            <span className="truncate text-sm font-extrabold tracking-wide text-sky-600 sm:text-lg sm:tracking-wider">
               MANGKARA
             </span>
           </div>
         </div>
 
-        {/* SISI KANAN: Lonceng Notifikasi & Profile User */}
-        <div className="flex items-center gap-3">
+        {/* SISI KANAN: Notifikasi dan Profil */}
+        <div className="ml-2 flex shrink-0 items-center gap-2 sm:gap-3">
           <button
             type="button"
             aria-label="Notifikasi"
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition hover:bg-slate-200"
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition hover:bg-slate-200 sm:h-10 sm:w-10"
           >
-            <Bell size={20} />
+            <Bell size={17} className="sm:hidden" />
+            <Bell size={20} className="hidden sm:block" />
           </button>
 
-          <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-blue-500 text-white shadow-sm transition hover:bg-blue-600">
-            <User size={22} />
-          </div>
+          <button
+            type="button"
+            aria-label="Profil pengguna"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-500 text-white shadow-sm transition hover:bg-blue-600 sm:h-10 sm:w-10"
+          >
+            <User size={19} className="sm:hidden" />
+            <User size={22} className="hidden sm:block" />
+          </button>
         </div>
       </header>
 
-      {/* SIDEBAR LANGSUNG DIPANGGUL DI SINI */}
+      {/* SIDEBAR */}
       <Sidebar
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}

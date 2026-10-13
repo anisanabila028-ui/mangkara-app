@@ -2,15 +2,15 @@
 
 import React from "react";
 import Link from "next/link";
-import { 
-  Home, 
-  Building2, 
-  ThumbsUp, 
-  Search, 
-  MessageSquare, 
-  User, 
+import {
+  Home,
+  Building2,
+  ThumbsUp,
+  Search,
+  MessageSquare,
+  User,
   HelpCircle,
-  X 
+  X
 } from "lucide-react";
 
 interface SidebarProps {
@@ -21,7 +21,7 @@ interface SidebarProps {
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const menuItems = [
     { icon: Home, label: "Beranda", href: "/dashboard/beranda" },
-    { icon: Building2, label: "Daftar Tempat PKL", href: "/dashboard/tempat-pkl" },
+    { icon: Building2, label: "Daftar Tempat PKL", href: "/dashboard/daftar-pkl" },
     { icon: ThumbsUp, label: "Rekomendasi", href: "/dashboard/rekomendasi" },
     { icon: Search, label: "Cari Tempat PKL", href: "/dashboard/cari" },
     { icon: MessageSquare, label: "Ulasan", href: "/dashboard/ulasan" },
@@ -33,7 +33,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     <>
       {/* Overlay Gelap saat sidebar muncul di mode tersembunyi */}
       {isOpen && (
-        <div 
+        <div
           onClick={onClose}
           className="fixed inset-0 bg-black/30 z-40 transition-opacity"
         />
@@ -41,24 +41,25 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
       {/* Sidebar Container */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-white border-r border-slate-100 z-50 p-5 flex flex-col justify-between transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 left-0 h-full w-64 bg-white border-r border-slate-100 z-50 p-5 flex flex-col justify-between transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <div>
           {/* Header Sidebar & Tombol Close */}
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center text-white font-extrabold text-lg">
-                M
-              </div>
-              <span className="font-extrabold text-xl tracking-wider text-sky-600">
-                MANGKARA
+              <img
+                src="/logomangkara.jpeg"
+                alt="Logo Mangkara"
+                className="h-7 w-7 shrink-0 rounded-md object-contain sm:h-8 sm:w-8"
+              />
+              <span className="truncate text-sm font-extrabold tracking-wide text-sky-600 sm:text-lg sm:tracking-wider">
+                M<span className="text-yellow-400">A</span>NGKARA
               </span>
             </div>
-            
+
             {/* Tombol X untuk menutup sidebar */}
-            <button 
+            <button
               onClick={onClose}
               className="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition"
             >
