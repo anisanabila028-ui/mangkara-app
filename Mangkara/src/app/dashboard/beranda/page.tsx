@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Search, MapPin, Star } from "lucide-react";
+import BottomOrnament from "../../../components/ui/bottomOrnament";
 
 export default function BerandaPage() {
   const rekomendasi = [
@@ -67,13 +68,16 @@ export default function BerandaPage() {
           </div>
 
           {/* Banner Illustration */}
-          <div className="relative w-48 h-48 md:w-64 md:h-64 flex-shrink-0">
-            <Image
-              src="/illustration-student.png"
-              alt="Hero Illustration"
-              fill
-              className="object-contain"
-            />
+          <div className="flex-shrink-0 rounded-2xl bg-blue-100 p-5">
+            <div className="relative h-[188px] w-[250px] md:h-[211px] md:w-[280px]">
+              <Image
+                src="/Hero Illustration.jpeg"
+                alt="Hero Illustration"
+                fill
+                sizes="(max-width: 768px) 250px, 280px"
+                className="object-contain"
+              />
+            </div>
           </div>
         </div>
 
