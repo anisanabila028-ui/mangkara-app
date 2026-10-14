@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import {
     Building2,
     MapPin,
@@ -11,77 +13,92 @@ import {
 } from "lucide-react";
 
 export default function DetailPKLPage() {
+    const router = useRouter();
+
     return (
-        <div className="min-h-screen bg-[#dcecff] px-10 py-7">
+        <div className="min-h-screen bg-[#dcecff] px-4 py-5 sm:px-6 sm:py-6 lg:px-10 lg:py-7">
 
-            {/* HEADER PERUSAHAAN */}
-            <div className="mb-6 flex items-center justify-between rounded-xl border border-slate-200 bg-white px-7 py-6 shadow-sm">
-                <div className="flex items-center gap-5">
+            {/* ================= HEADER PERUSAHAAN ================= */}
+            <div className="mb-6 rounded-xl border border-slate-200 bg-white px-5 py-5 shadow-sm sm:px-7 sm:py-6">
 
-                    {/* LOGO */}
-                    <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-xl bg-[#eef7fb]">
-                        <Building2
-                            size={45}
-                            strokeWidth={1.8}
-                            className="text-[#78909c]"
-                        />
-                    </div>
+                <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
 
                     {/* INFORMASI PERUSAHAAN */}
-                    <div>
-                        <h1 className="text-2xl font-bold text-[#263238]">
-                            PT Digital Indonesia
-                        </h1>
+                    <div className="flex min-w-0 items-center gap-4 sm:gap-5">
 
-                        <div className="mt-2 flex items-center gap-5 text-sm text-slate-500">
+                        {/* LOGO */}
+                        <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[#eef7fb] sm:h-20 sm:w-20">
+                            <Building2
+                                size={36}
+                                strokeWidth={1.8}
+                                className="text-[#78909c] sm:h-[45px] sm:w-[45px]"
+                            />
+                        </div>
 
-                            <span className="flex items-center gap-1.5">
-                                <MapPin size={16} />
-                                Bandung
-                            </span>
+                        {/* NAMA + INFO */}
+                        <div className="min-w-0">
 
-                            <span className="flex items-center gap-1.5 text-[#f5a400]">
-                                <Star
-                                    size={16}
-                                    fill="#f5a400"
-                                />
-                                4.6
-                            </span>
+                            <h1 className="text-xl font-bold leading-tight text-[#263238] sm:text-2xl">
+                                PT Digital Indonesia
+                            </h1>
 
-                            <span className="text-slate-500">
-                                (120 ulasan)
-                            </span>
+                            <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-500 sm:text-sm">
+
+                                <span className="flex items-center gap-1.5">
+                                    <MapPin size={14} />
+                                    Bandung
+                                </span>
+
+                                <span className="flex items-center gap-1.5 text-[#f5a400]">
+                                    <Star
+                                        size={15}
+                                        fill="#f5a400"
+                                    />
+                                    4.6
+                                </span>
+
+                                <span className="text-slate-500">
+                                    (120 ulasan)
+                                </span>
+
+                            </div>
 
                         </div>
                     </div>
+
+
+                    {/* KATEGORI */}
+                    <div className="flex flex-wrap items-center gap-2">
+
+                        <span className="rounded-full bg-[#eef6ff] px-4 py-2 text-xs text-[#1677dc] sm:px-5 sm:text-sm">
+                            Web Development
+                        </span>
+
+                        <span className="rounded-full bg-[#eef6ff] px-4 py-2 text-xs text-[#1677dc] sm:px-5 sm:text-sm">
+                            IT
+                        </span>
+
+                    </div>
+
                 </div>
 
-                {/* KATEGORI */}
-                <div className="flex items-center gap-3">
-                    <span className="rounded-full bg-[#eef6ff] px-5 py-2 text-sm text-[#1677dc]">
-                        Web Development
-                    </span>
-
-                    <span className="rounded-full bg-[#eef6ff] px-5 py-2 text-sm text-[#1677dc]">
-                        IT
-                    </span>
-                </div>
             </div>
 
 
-            {/* CONTENT */}
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_280px]">
+            {/* ================= CONTENT ================= */}
+            <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_280px]">
 
-                {/* BAGIAN KIRI */}
-                <div className="space-y-6">
+                {/* ================= BAGIAN KIRI ================= */}
+                <div className="min-w-0 space-y-6">
 
                     {/* DESKRIPSI */}
-                    <section className="rounded-xl border border-slate-200 bg-white px-7 py-6">
-                        <h2 className="mb-5 text-lg font-bold text-[#263238]">
+                    <section className="rounded-xl border border-slate-200 bg-white px-5 py-5 sm:px-7 sm:py-6">
+
+                        <h2 className="mb-4 text-lg font-bold text-[#263238] sm:mb-5">
                             Deskripsi
                         </h2>
 
-                        <p className="text-sm leading-8 text-slate-600">
+                        <p className="text-sm leading-7 text-slate-600">
                             PT Digital Indonesia adalah perusahaan teknologi
                             terkemuka yang berfokus pada pengembangan perangkat
                             lunak berkualitas tinggi, solusi IT enterprise, dan
@@ -90,42 +107,46 @@ export default function DetailPKLPage() {
                             berkontribusi, dan berkembang langsung bersama tim
                             engineer profesional kami.
                         </p>
+
                     </section>
 
 
                     {/* INFORMASI MAGANG */}
-                    <section className="rounded-xl border border-slate-200 bg-white px-7 py-6">
+                    <section className="rounded-xl border border-slate-200 bg-white px-5 py-5 sm:px-7 sm:py-6">
 
-                        <h2 className="mb-6 text-lg font-bold text-[#263238]">
+                        <h2 className="mb-5 text-lg font-bold text-[#263238]">
                             Informasi Magang
                         </h2>
 
-                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
 
                             {/* JURUSAN */}
-                            <div className="flex items-start gap-4">
-                                <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#eef7fb]">
+                            <div className="flex min-w-0 items-start gap-3 sm:gap-4">
+
+                                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#eef7fb]">
                                     <Users
                                         size={23}
                                         className="text-[#78909c]"
                                     />
                                 </div>
 
-                                <div>
+                                <div className="min-w-0">
                                     <p className="text-sm text-slate-500">
                                         Jurusan Tersedia
                                     </p>
 
-                                    <p className="mt-1 text-sm font-semibold text-[#263238]">
+                                    <p className="mt-1 break-words text-sm font-semibold text-[#263238]">
                                         RPL, TKJ, SI
                                     </p>
                                 </div>
+
                             </div>
 
 
                             {/* KUOTA */}
-                            <div className="flex items-start gap-4">
-                                <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#eef7fb]">
+                            <div className="flex min-w-0 items-start gap-3 sm:gap-4">
+
+                                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#eef7fb]">
                                     <Users
                                         size={23}
                                         className="text-[#78909c]"
@@ -141,33 +162,37 @@ export default function DetailPKLPage() {
                                         5 Siswa
                                     </p>
                                 </div>
+
                             </div>
 
 
                             {/* PERIODE */}
-                            <div className="flex items-start gap-4">
-                                <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#eef7fb]">
+                            <div className="flex min-w-0 items-start gap-3 sm:gap-4">
+
+                                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#eef7fb]">
                                     <CalendarDays
                                         size={23}
                                         className="text-[#78909c]"
                                     />
                                 </div>
 
-                                <div>
+                                <div className="min-w-0">
                                     <p className="text-sm text-slate-500">
                                         Periode Magang
                                     </p>
 
-                                    <p className="mt-1 text-sm font-semibold text-[#263238]">
+                                    <p className="mt-1 break-words text-sm font-semibold text-[#263238]">
                                         Juli - Desember 2026
                                     </p>
                                 </div>
+
                             </div>
 
 
                             {/* JAM */}
-                            <div className="flex items-start gap-4">
-                                <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#eef7fb]">
+                            <div className="flex min-w-0 items-start gap-3 sm:gap-4">
+
+                                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#eef7fb]">
                                     <Clock
                                         size={23}
                                         className="text-[#78909c]"
@@ -183,14 +208,16 @@ export default function DetailPKLPage() {
                                         08.00 - 17.00 WIB
                                     </p>
                                 </div>
+
                             </div>
 
                         </div>
+
                     </section>
 
 
                     {/* POSISI */}
-                    <section className="rounded-xl border border-slate-200 bg-white px-7 py-6">
+                    <section className="rounded-xl border border-slate-200 bg-white px-5 py-5 sm:px-7 sm:py-6">
 
                         <h2 className="mb-5 text-lg font-bold text-[#263238]">
                             Posisi yang Tersedia
@@ -198,41 +225,43 @@ export default function DetailPKLPage() {
 
                         <div className="space-y-3">
 
-                            <div className="rounded-lg bg-[#f5f9ff] px-5 py-4">
+                            <div className="rounded-lg bg-[#f5f9ff] px-4 py-4 sm:px-5">
                                 <p className="font-semibold text-[#263238]">
                                     Frontend Developer
                                 </p>
 
-                                <p className="mt-1 text-sm text-slate-500">
+                                <p className="mt-1 text-sm leading-6 text-slate-500">
                                     Membuat dan mengembangkan tampilan
                                     aplikasi berbasis web.
                                 </p>
                             </div>
 
-                            <div className="rounded-lg bg-[#f5f9ff] px-5 py-4">
+
+                            <div className="rounded-lg bg-[#f5f9ff] px-4 py-4 sm:px-5">
                                 <p className="font-semibold text-[#263238]">
                                     Backend Developer
                                 </p>
 
-                                <p className="mt-1 text-sm text-slate-500">
+                                <p className="mt-1 text-sm leading-6 text-slate-500">
                                     Mengembangkan sistem dan API untuk
                                     kebutuhan aplikasi.
                                 </p>
                             </div>
 
                         </div>
+
                     </section>
 
                 </div>
 
 
-                {/* BAGIAN KANAN */}
-                <div className="space-y-6">
+                {/* ================= BAGIAN KANAN ================= */}
+                <div className="min-w-0 space-y-6">
 
                     {/* LOKASI */}
-                    <section className="rounded-xl border border-slate-200 bg-white px-5 py-6">
+                    <section className="rounded-xl border border-slate-200 bg-white px-5 py-5 sm:py-6">
 
-                        <h2 className="mb-5 text-lg font-bold text-[#263238]">
+                        <h2 className="mb-4 text-lg font-bold text-[#263238]">
                             Lokasi Perusahaan
                         </h2>
 
@@ -241,29 +270,33 @@ export default function DetailPKLPage() {
                             Jawa Barat, Indonesia
                         </p>
 
+
                         {/* MAP */}
-                        <div className="mt-5 flex h-36 items-center justify-center rounded-lg bg-[#dcebd7]">
+                        <div className="mt-5 h-48 w-full overflow-hidden rounded-lg bg-[#dcebd7] sm:h-52">
 
-                            <div className="text-center">
-                                <MapPin
-                                    size={42}
-                                    className="mx-auto text-red-500"
-                                />
-
-                                <p className="mt-2 text-sm font-medium text-red-500">
-                                    Lokasi Perusahaan
-                                </p>
-                            </div>
+                            <iframe
+                                src="https://www.google.com/maps?q=Jl.%20Merdeka%20No.%20123,%20Bandung,%20Jawa%20Barat&output=embed"
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0 }}
+                                loading="lazy"
+                                allowFullScreen
+                                referrerPolicy="no-referrer-when-downgrade"
+                            />
 
                         </div>
 
-                        <button
-                            type="button"
-                            className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 transition hover:bg-slate-50"
+
+                        {/* GOOGLE MAPS */}
+                        <a
+                            href="https://www.google.com/maps/search/?api=1&query=Jl.+Merdeka+No.+123,+Bandung,+Jawa+Barat"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600 transition hover:bg-slate-50"
                         >
                             <ExternalLink size={16} />
                             Lihat di Google Maps
-                        </button>
+                        </a>
 
                     </section>
 
@@ -273,6 +306,7 @@ export default function DetailPKLPage() {
 
                         <button
                             type="button"
+                            onClick={() => router.push("/dashboard/ajukan")}
                             className="w-full rounded-lg bg-[#1478df] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#0f69c7]"
                         >
                             Ajukan PKL
@@ -283,6 +317,7 @@ export default function DetailPKLPage() {
                 </div>
 
             </div>
+
         </div>
     );
 }
