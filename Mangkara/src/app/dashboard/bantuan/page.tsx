@@ -15,8 +15,8 @@ export default function BantuanPage() {
   ];
 
   return (
-    <div className="flex flex-col justify-between min-h-[calc(100vh-5rem)]">
-      <div>
+    <div className="flex min-h-[calc(100vh-5rem)] flex-col justify-between">
+      <div className="px-6 pb-8 pt-7 md:px-8">
         <h1 className="text-xl font-bold text-gray-800 mb-1">Pusat Bantuan</h1>
         <p className="text-xs text-gray-400 mb-6">Temukan jawaban dari pertanyaan yang sering diajukan.</p>
 
@@ -52,11 +52,17 @@ export default function BantuanPage() {
         </div>
       </div>
 
-      {/* Footer Bantuan */}
-      <footer className="bg-blue-100/70 p-6 rounded-2xl mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-gray-600">
+      {/* Footer Bantuan — full width, bukan kartu */}
+      <footer className="w-full bg-blue-100/70 px-6 py-6 md:px-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-gray-600">
         <div>
           <div className="flex items-center gap-2 font-bold text-blue-600 mb-2">
-            <div className="w-5 h-5 bg-blue-600 rounded-md text-white flex items-center justify-center text-[10px]">P</div>
+            <div className="flex h-5 w-5 items-center justify-center overflow-hidden rounded">
+              <img
+                src="/logmangkara.png"
+                alt="Logo Mangkara"
+                className="h-full w-full object-contain"
+              />
+            </div>
             Mangkara
           </div>
           <p className="text-[10px] text-gray-500 leading-relaxed mb-3">

@@ -2,26 +2,33 @@
 
 import React from "react";
 import Link from "next/link";
-import {
-  Home,
-  Building2,
-  ThumbsUp,
-  Search,
-  MessageSquare,
-  User,
+import { usePathname } from "next/navigation";
+import { 
+  Home, 
+  Building2, 
+  ThumbsUp, 
+  Search, 
+  MessageSquare, 
+  User, 
   HelpCircle,
   X
 } from "lucide-react";
 
 interface SidebarProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
-export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+export default function Sidebar({
+  isOpen = true,
+  onClose = () => {},
+}: SidebarProps) {
+  const pathname = usePathname();
+
   const menuItems = [
     { icon: Home, label: "Beranda", href: "/dashboard/beranda" },
     { icon: Building2, label: "Daftar Tempat PKL", href: "/dashboard/daftar-pkl" },
+    { icon: ThumbsUp, label: "Rekomendasi", href: "/dashboard/rekomendasi" },
     { icon: Search, label: "Cari Tempat PKL", href: "/dashboard/cari" },
     { icon: MessageSquare, label: "Ulasan", href: "/dashboard/ulasan" },
     { icon: User, label: "Akun", href: "/dashboard/akun" },
@@ -29,11 +36,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   return (
     <>
-      {/* Overlay Gelap saat sidebar muncul di mode tersembunyi */}
+      {/* Overlay Gelap - hanya di layar kecil (mode drawer) */}
       {isOpen && (
         <div
           onClick={onClose}
-          className="fixed inset-0 bg-black/30 z-40 transition-opacity"
+          className="fixed inset-0 bg-black/30 z-40 transition-opacity lg:hidden"
         />
       )}
 
@@ -46,13 +53,15 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           {/* Header Sidebar & Tombol Close */}
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-2">
-              <img
-                src="/logomangkara.jpeg"
-                alt="Logo Mangkara"
-                className="h-7 w-7 shrink-0 rounded-md object-contain sm:h-8 sm:w-8"
-              />
-              <span className="truncate text-sm font-extrabold tracking-wide text-sky-600 sm:text-lg sm:tracking-wider">
-                M<span className="text-yellow-400">A</span>NGKARA
+              <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg">
+                <img
+                  src="/logmangkara.png"
+                  alt="Logo Mangkara"
+                  className="h-full w-full object-contain"
+                />
+              </div>
+              <span className="font-extrabold text-xl tracking-wider text-sky-600">
+                MANGKARA
               </span>
             </div>
 
@@ -69,11 +78,22 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <nav className="flex flex-col gap-1">
             {menuItems.map((item, index) => {
               const Icon = item.icon;
+
+              // Tandai menu sebagai aktif jika sedang berada di halaman itu
+              const isActive =
+                pathname === item.href ||
+                pathname.startsWith(item.href + "/");
+
               return (
                 <Link
                   key={index}
                   href={item.href}
-                  className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:bg-sky-50 hover:text-sky-600 transition"
+                  aria-current={isActive ? "page" : undefined}
+                  className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-semibold transition ${
+                    isActive
+                      ? "bg-sky-100 text-sky-600"
+                      : "text-slate-600 hover:bg-sky-50 hover:text-sky-600"
+                  }`}
                 >
                   <Icon size={18} />
                   <span>{item.label}</span>

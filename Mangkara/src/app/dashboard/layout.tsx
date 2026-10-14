@@ -15,10 +15,17 @@ export default function DashboardLayout({
         <div className="flex min-h-screen bg-slate-50/50">
 
             {/* SIDEBAR */}
-            {sidebarOpen && <Sidebar />}
+            <Sidebar
+                isOpen={sidebarOpen}
+                onClose={() => setSidebarOpen(false)}
+            />
 
-            {/* AREA UTAMA */}
-            <div className="flex flex-1 min-w-0 flex-col">
+            {/* AREA UTAMA - beri jarak agar tidak tertutup sidebar (desktop) */}
+            <div
+                className={`flex min-w-0 flex-1 flex-col ${
+                    sidebarOpen ? "lg:pl-64" : ""
+                }`}
+            >
 
                 {/* TOPBAR - BERLAKU UNTUK SEMUA HALAMAN */}
                 <Topbar
