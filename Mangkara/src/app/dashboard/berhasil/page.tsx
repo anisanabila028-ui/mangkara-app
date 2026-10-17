@@ -13,13 +13,11 @@ export default function BerhasilPage() {
 
                 {/* ICON BERHASIL */}
                 <div className="mb-5 flex justify-center">
-                    <div className="flex h-20 w-20 items-center justify-center sm:h-24 sm:w-24">
-                        <img
-                            src="/berhasil.png"
-                            alt="Berhasil"
-                            className="h-16  w-16 object-contain sm:h-20 sm:w-20"
-                        />
-                    </div>
+                    <img
+                        src="/berhasil.png"
+                        alt="Berhasil"
+                        className="h-auto w-3/5 max-w-[390px] object-contain"
+                    />
                 </div>
 
                 {/* JUDUL */}
@@ -28,10 +26,7 @@ export default function BerhasilPage() {
                         Pengajuan Berhasil!
                     </h1>
 
-                    <p className="mx-auto mt-2 max-w-[520px] text-xs leading-5 text-gray-600 sm:text-sm">
-                        Pengajuan PKL kamu telah berhasil dikirim
-                        dan sedang diproses oleh Admin.
-                    </p>
+
                 </div>
 
                 {/* STATUS 1 */}
@@ -92,7 +87,7 @@ export default function BerhasilPage() {
                 {/* BUTTON */}
                 <button
                     type="button"
-                    onClick={() => router.push("/dashboard")}
+                    onClick={() => router.push("/dashboard/beranda")}
                     className="w-full rounded-md bg-[#1683ed] px-4 py-3 text-sm font-medium text-white transition hover:bg-[#096dcc] active:scale-[0.99]"
                 >
                     Kembali Ke Beranda

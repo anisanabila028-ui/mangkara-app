@@ -5,53 +5,35 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { signIn } from "next-auth/react";
+import { api, simpanToken } from "@/lib/api";
+
 export default function LoginPage() {
     const router = useRouter();
 
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({ email: "", password: "" });
     const [isLoading, setIsLoading] = useState(false);
+    const [pesan, setPesan] = useState("");
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    /**
-     * ============================================================
-     * SLOT KONEKSI DATABASE — LOGIN
-     * ============================================================
-     * Isi bagian ini nanti saat database sudah siap, contoh:
-     *
-     * Supabase :
-     *   const { error } = await supabase.auth.signInWithPassword({
-     *     email: formData.email,
-     *     password: formData.password,
-     *   });
-     *   if (error) throw error;
-     *
-     * Firebase :
-     *   await signInWithEmailAndPassword(auth, formData.email, formData.password);
-     *
-     * API sendiri :
-     *   await fetch("/api/login", {
-     *     method: "POST",
-     *     headers: { "Content-Type": "application/json" },
-     *     body: JSON.stringify(formData),
-     *   });
-     *
-     * Data yang dikirim: formData.email dan formData.password
-     * ============================================================
-     */
+    // Login ke backend Strapi (endpoint /api/auth/local)
     const loginKeDatabase = async (): Promise<{ ok: boolean }> => {
-        // TODO: hubungkan ke database di sini
-        await new Promise((resolve) => setTimeout(resolve, 600)); // simulasi proses login
+        const r = await api("/auth/local", {
+            method: "POST",
+            body: { identifier: formData.email, password: formData.password },
+        });
+        simpanToken(r.jwt);
         return { ok: true };
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
+        setPesan("");
 
         try {
             const hasil = await loginKeDatabase();
@@ -61,7 +43,7 @@ export default function LoginPage() {
                 router.push("/dashboard/beranda");
             }
         } catch (error) {
-            console.error("Login gagal:", error);
+            setPesan(error instanceof Error ? error.message : "Login gagal");
         } finally {
             setIsLoading(false);
         }
@@ -185,6 +167,11 @@ export default function LoginPage() {
                         >
                             {isLoading ? "Memproses..." : "Masuk"}
                         </button>
+
+                        {/* Pesan error dari backend */}
+                        {pesan && (
+                            <p className="text-red-500 text-[12px] mt-2">{pesan}</p>
+                        )}
 
                     </form>
 

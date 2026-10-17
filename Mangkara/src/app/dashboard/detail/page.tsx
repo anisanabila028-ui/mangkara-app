@@ -1,353 +1,169 @@
-"use client";
-
-import { useRouter } from "next/navigation";
-
+import Link from "next/link";
 import {
-    Building2,
     MapPin,
     Star,
-    BookOpen,
-    User,
+    GraduationCap,
+    Users,
     Clock,
-    ExternalLink,
+    Building2,
 } from "lucide-react";
 
-/* ================= DATA ================= */
+/**
+ * Data sementara (dummy). Nanti ganti dengan data dari backend,
+ * misalnya lewat useApi("/perusahaan/ID") dari "@/lib/api".
+ */
+const perusahaan = {
+    nama: "PT Digital Indonesia",
+    kota: "Bandung",
+    rating: 4.6,
+    jumlahUlasan: 120,
+    kategori: ["Web Development", "IT"],
+    logo: "", // isi dengan alamat gambar, kosong = tampil gambar placeholder
+    deskripsi:
+        "PT Digital Indonesia adalah perusahaan teknologi terkemuka yang berfokus pada pengembangan perangkat lunak berkualitas tinggi, solusi IT enterprise, dan transformasi digital. Kami membuka kesempatan berharga bagi siswa/siswi SMK untuk belajar, berkontribusi, dan berkembang langsung bersama tim engineer profesional kami.",
+    jurusan: "RPL, TKJ, SI",
+    kuotaTersedia: 5,
+    kuotaTotal: 10,
+    durasi: "3 - 6 Bulan",
+    jamKerja: "8 pagi - 4 sore",
+    alamat: "Sumedang Indonesia",
+};
 
-// Isi dengan URL / path foto perusahaan (contoh: "/images/pt-digital.jpg").
-// Kalau dikosongkan, otomatis tampil ikon gedung.
-const LOGO_URL = "";
-
-const INFO_MAGANG = [
-    { label: "Jurusan Tersedia", value: "PPLG", icon: BookOpen },
-    { label: "Kuota", value: "5 dari 10 Tersedia", icon: User },
-    { label: "Durasi", value: "4 Bulan", icon: Clock },
-    { label: "Jam kerja", value: "8 pagi - 4 sore", icon: Clock },
+const infoMagang = [
+    { ikon: GraduationCap, label: "Jurusan Tersedia", nilai: perusahaan.jurusan },
+    {
+        ikon: Users,
+        label: "Kuota",
+        nilai: `${perusahaan.kuotaTersedia} dari ${perusahaan.kuotaTotal} Tersedia`,
+    },
+    { ikon: Clock, label: "Durasi", nilai: perusahaan.durasi },
+    { ikon: Clock, label: "Jam kerja", nilai: perusahaan.jamKerja },
 ];
 
-// Jumlah ulasan untuk bintang 1 sampai 5
-const DISTRIBUSI_RATING = [
-    { bintang: 1, jumlah: 0 },
-    { bintang: 2, jumlah: 0 },
-    { bintang: 3, jumlah: 0 },
-    { bintang: 4, jumlah: 33 },
-    { bintang: 5, jumlah: 34 },
-];
-
-const ULASAN = [
-    {
-        nama: "Jane Doe",
-        tanggal: "08/10/26",
-        bintang: 5,
-        isi: "Sangat direkomendasikan karena siswa langsung belajar koding, framework modern, dan merasakan alur proyek nyata.",
-    },
-    {
-        nama: "Tina",
-        tanggal: "04/10/26",
-        bintang: 5,
-        isi: "Suasana kerjanya dinamis dan cepat, sangat bagus untuk belajar full-stack development sekaligus desain UI/UX.",
-    },
-    {
-        nama: "Nina",
-        tanggal: "03/10/26",
-        bintang: 5,
-        isi: "Fokusnya lebih ke pemeliharaan sistem internal, jaringan kantor, atau pengelolaan database operasional.",
-    },
-];
-
-/* ================= KOMPONEN KECIL ================= */
-
-function Bintang({ jumlah, size = 12 }: { jumlah: number; size?: number }) {
-    return (
-        <span className="flex items-center gap-0.5">
-            {Array.from({ length: 5 }).map((_, i) => (
-                <Star
-                    key={i}
-                    size={size}
-                    strokeWidth={1.5}
-                    fill={i < jumlah ? "#fde047" : "none"}
-                    className={i < jumlah ? "text-[#a16207]" : "text-slate-300"}
-                />
-            ))}
-        </span>
+export default function DetailPerusahaanPage() {
+    const kueriPeta = encodeURIComponent(
+        `${perusahaan.nama} ${perusahaan.kota}`
     );
-}
-
-function Avatar({ size = "h-9 w-9" }: { size?: string }) {
-    return (
-        <div
-            className={`flex ${size} shrink-0 items-center justify-center rounded-full bg-[#dbeafe] text-[#1677dc]`}
-        >
-            <User size={18} />
-        </div>
-    );
-}
-
-/* ================= HALAMAN ================= */
-
-export default function DetailPKLPage() {
-    const router = useRouter();
 
     return (
-        <div className="min-h-screen bg-white px-4 py-5 sm:px-6 sm:py-6 lg:px-8">
+        <div className="w-full max-w-6xl mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
+            {/* Header perusahaan */}
+            <section className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+                <div className="h-20 w-full sm:h-16 sm:w-24 shrink-0 overflow-hidden rounded-lg bg-gray-100 flex items-center justify-center">
+                    {perusahaan.logo ? (
+                        <img
+                            src={perusahaan.logo}
+                            alt={perusahaan.nama}
+                            className="h-full w-full object-cover"
+                        />
+                    ) : (
+                        <Building2 size={28} className="text-gray-400" />
+                    )}
+                </div>
 
-            <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_300px]">
-
-                {/* ================= HEADER PERUSAHAAN ================= */}
-                <div className="min-w-0 rounded-xl border border-slate-200 bg-white px-5 py-4 shadow-sm lg:col-span-2">
-
-                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-
-                        <div className="flex min-w-0 items-center gap-4">
-
-                            {/* LOGO / FOTO */}
-                            <div className="flex h-14 w-20 shrink-0 items-center justify-center overflow-hidden rounded-md bg-[#eef7fb]">
-                                {LOGO_URL ? (
-                                    // eslint-disable-next-line @next/next/no-img-element
-                                    <img
-                                        src={LOGO_URL}
-                                        alt="PT Digital Indonesia"
-                                        className="h-full w-full object-cover"
-                                    />
-                                ) : (
-                                    <Building2
-                                        size={30}
-                                        strokeWidth={1.8}
-                                        className="text-[#78909c]"
-                                    />
-                                )}
-                            </div>
-
-                            {/* NAMA + INFO */}
-                            <div className="min-w-0">
-                                <h1 className="text-xl font-bold leading-tight text-[#263238]">
-                                    PT Digital Indonesia
-                                </h1>
-
-                                <div className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500">
-                                    <span className="flex items-center gap-1">
-                                        <MapPin size={13} />
-                                        Bandung
-                                    </span>
-
-                                    <span className="flex items-center gap-1 font-semibold text-[#f5a400]">
-                                        <Star size={13} fill="#f5a400" />
-                                        4,6
-                                    </span>
-
-                                    <span>(120 ulasan)</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* KATEGORI */}
-                        <div className="flex flex-wrap items-center gap-2">
-                            <span className="rounded-full bg-[#eef6ff] px-3 py-1 text-[11px] text-[#1677dc]">
-                                Web Development
+                <div className="flex-1 min-w-0">
+                    <h1 className="text-xl sm:text-2xl font-bold text-[#263238]">
+                        {perusahaan.nama}
+                    </h1>
+                    <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500">
+                        <span className="flex items-center gap-1">
+                            <MapPin size={12} />
+                            {perusahaan.kota}
+                        </span>
+                        <span className="flex items-center gap-1">
+                            <Star size={12} className="fill-amber-400 text-amber-400" />
+                            <span className="font-semibold text-amber-500">
+                                {perusahaan.rating}
                             </span>
-                            <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] text-slate-600">
-                                IT
-                            </span>
-                        </div>
-
+                            <span>({perusahaan.jumlahUlasan} ulasan)</span>
+                        </span>
                     </div>
                 </div>
 
+                <div className="flex flex-wrap gap-2 sm:justify-end">
+                    {perusahaan.kategori.map((k, i) => (
+                        <span
+                            key={k}
+                            className={`rounded-full px-3 py-1 text-[11px] font-medium ${i === 0
+                                    ? "bg-blue-100 text-blue-600"
+                                    : "bg-gray-100 text-gray-600"
+                                }`}
+                        >
+                            {k}
+                        </span>
+                    ))}
+                </div>
+            </section>
 
-                {/* ================= DESKRIPSI ================= */}
-                <section className="min-w-0 rounded-xl border border-slate-200 bg-white px-5 py-4 lg:col-start-1">
+            {/* Isi: kiri (deskripsi + info) dan kanan (lokasi) */}
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 items-start">
+                <div className="space-y-6">
+                    {/* Deskripsi */}
+                    <section className="bg-white rounded-xl border border-gray-200 p-5 sm:p-6">
+                        <h2 className="text-sm font-bold text-[#263238]">Deskripsi</h2>
+                        <p className="mt-3 text-xs sm:text-[13px] leading-relaxed text-gray-500">
+                            {perusahaan.deskripsi}
+                        </p>
+                    </section>
 
-                    <h2 className="mb-2 text-sm font-bold text-[#263238]">
-                        Deskripsi
-                    </h2>
-
-                    <p className="text-xs leading-6 text-slate-600">
-                        PT Digital Indonesia adalah perusahaan teknologi
-                        terkemuka yang berfokus pada pengembangan perangkat
-                        lunak berkualitas tinggi, solusi IT enterprise, dan
-                        transformasi digital. Kami membuka kesempatan berharga
-                        bagi siswa/siswi SMK untuk belajar, berkontribusi, dan
-                        berkembang langsung bersama tim engineer profesional
-                        kami.
-                    </p>
-
-                </section>
-
-
-                {/* ================= INFORMASI MAGANG ================= */}
-                <section className="min-w-0 rounded-xl border border-slate-200 bg-white px-5 py-4 lg:col-start-1">
-
-                    <h2 className="mb-3 text-sm font-bold text-[#263238]">
-                        Informasi Magang
-                    </h2>
-
-                    <div className="space-y-3">
-                        {INFO_MAGANG.map(({ label, value, icon: Icon }) => (
-                            <div key={label} className="flex items-start gap-3">
-                                <Icon
-                                    size={16}
-                                    className="mt-0.5 shrink-0 text-[#455a64]"
-                                />
-                                <div className="min-w-0">
-                                    <p className="text-[10px] leading-tight text-slate-500">
-                                        {label}
-                                    </p>
-                                    <p className="text-xs font-bold text-[#263238]">
-                                        {value}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                </section>
-
-
-                {/* ================= RINGKASAN RATING ================= */}
-                <section className="min-w-0 rounded-xl border border-slate-200 bg-white px-5 py-4 lg:col-start-1">
-
-                    <div className="flex flex-wrap items-center gap-6 sm:gap-10">
-
-                        {/* NILAI RATA-RATA */}
-                        <div className="flex flex-col items-center">
-                            <p className="text-3xl font-bold leading-none text-[#263238]">
-                                4,5
-                            </p>
-                            <div className="mt-1.5">
-                                <Bintang jumlah={5} size={11} />
-                            </div>
-                            <p className="mt-1 text-[10px] font-semibold text-[#263238]">
-                                total 67 ulasan
-                            </p>
-                        </div>
-
-                        {/* DISTRIBUSI BINTANG */}
-                        <div className="flex items-center gap-2">
-                            {DISTRIBUSI_RATING.map(({ bintang, jumlah }) => (
-                                <div
-                                    key={bintang}
-                                    className="flex h-12 w-12 flex-col items-center justify-between rounded-lg bg-[#7575f7] pb-0.5 pt-1.5 sm:h-14 sm:w-14"
-                                >
-                                    <span className="text-xl font-extrabold leading-none text-black sm:text-2xl">
-                                        {jumlah}
-                                    </span>
-                                    <span className="text-[10px] font-bold leading-none text-white">
-                                        {bintang}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-
-                    </div>
-
-                </section>
-
-
-                {/* ================= RATING DAN ULASAN ================= */}
-                <section className="min-w-0 rounded-xl border border-slate-200 bg-white px-5 py-4 lg:col-start-1">
-
-                    <h2 className="mb-4 text-sm font-bold text-[#263238]">
-                        Rating dan ulasan
-                    </h2>
-
-                    <div className="space-y-4">
-                        {ULASAN.map((u) => (
-                            <div key={u.nama} className="flex items-start gap-3">
-                                <Avatar />
-
-                                <div className="min-w-0">
-                                    <div className="flex items-center gap-1.5">
-                                        <span className="text-[9px] text-slate-500">
-                                            {u.tanggal}
-                                        </span>
-                                        <Bintang jumlah={u.bintang} size={10} />
+                    {/* Informasi magang */}
+                    <section className="bg-white rounded-xl border border-gray-200 p-5 sm:p-6">
+                        <h2 className="text-sm font-bold text-[#263238]">
+                            Informasi Magang
+                        </h2>
+                        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+                            {infoMagang.map((item, i) => {
+                                const Ikon = item.ikon;
+                                return (
+                                    <div key={i} className="flex items-start gap-3">
+                                        <Ikon size={16} className="mt-0.5 text-gray-500 shrink-0" />
+                                        <div>
+                                            <p className="text-[11px] text-gray-400">{item.label}</p>
+                                            <p className="text-xs font-semibold text-[#263238]">
+                                                {item.nilai}
+                                            </p>
+                                        </div>
                                     </div>
-
-                                    <p className="text-xs font-bold text-[#263238]">
-                                        {u.nama}
-                                    </p>
-
-                                    <p className="mt-1.5 text-[11px] leading-5 text-slate-600">
-                                        {u.isi}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <button
-                        type="button"
-                        onClick={() => router.push("/dashboard/ulasan")}
-                        className="mt-4 text-[10px] font-medium text-[#1677dc] hover:underline"
-                    >
-                        Lihat semua ulasan →
-                    </button>
-
-                </section>
-
-
-                {/* ================= BERIKAN ULASAN ================= */}
-                <div className="flex min-w-0 items-center gap-3 rounded-[28px] border border-[#3b82f6] bg-[#e8eeff] px-4 py-4 lg:col-start-1">
-
-                    <Avatar size="h-10 w-10" />
-
-                    <input
-                        type="text"
-                        placeholder="Berikan Ulasan..."
-                        className="h-8 min-w-0 flex-1 rounded-full bg-white px-4 text-xs font-semibold text-[#263238] outline-none placeholder:text-[#263238] focus:ring-2 focus:ring-[#3b82f6]"
-                    />
-
+                                );
+                            })}
+                        </div>
+                    </section>
                 </div>
 
-
-                {/* ================= LOKASI (KANAN, sejajar rating) ================= */}
-                <section className="min-w-0 self-start rounded-md border border-slate-200 bg-white px-4 py-4 lg:col-start-2 lg:row-span-3 lg:row-start-4">
-
-                    <h2 className="mb-2 text-xs font-bold text-[#263238]">
+                {/* Lokasi perusahaan */}
+                <aside className="bg-white rounded-xl border border-gray-200 p-5 sm:p-6">
+                    <h2 className="text-sm font-bold text-[#263238]">
                         Lokasi Perusahaan
                     </h2>
+                    <p className="mt-3 text-xs text-gray-500">{perusahaan.alamat}</p>
 
-                    <p className="text-[10px] leading-4 text-slate-600">
-                        Jl. Merdeka No. 123, Bandung, Jawa Barat, Indonesia
-                    </p>
-
-                    {/* MAP */}
-                    <div className="mx-auto mt-4 h-28 w-4/5 overflow-hidden rounded-sm bg-[#dcebd7]">
+                    <div className="mt-4 aspect-[4/3] w-full overflow-hidden rounded-lg bg-gray-100">
                         <iframe
-                            src="https://www.google.com/maps?q=Jl.%20Merdeka%20No.%20123,%20Bandung,%20Jawa%20Barat&output=embed"
-                            width="100%"
-                            height="100%"
-                            style={{ border: 0 }}
+                            title={`Peta ${perusahaan.nama}`}
+                            src={`https://www.google.com/maps?q=${kueriPeta}&output=embed`}
+                            className="h-full w-full border-0"
                             loading="lazy"
-                            allowFullScreen
                             referrerPolicy="no-referrer-when-downgrade"
                         />
                     </div>
 
-                    {/* GOOGLE MAPS */}
                     <a
-                        href="https://www.google.com/maps/search/?api=1&query=Jl.+Merdeka+No.+123,+Bandung,+Jawa+Barat"
+                        href={`https://www.google.com/maps/search/?api=1&query=${kueriPeta}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-[10px] font-semibold text-slate-700 transition hover:bg-slate-100"
+                        className="mt-4 flex h-9 w-full items-center justify-center rounded-lg bg-gray-100 text-xs font-medium text-gray-600 hover:bg-gray-200 transition"
                     >
-                        <ExternalLink size={12} />
                         Lihat di Google Maps
                     </a>
 
-                    {/* KEMBALI */}
-                    <button
-                        type="button"
-                        onClick={() => router.push("/dashboard")}
-                        className="mt-3 w-full rounded-md bg-[#2f8cf0] px-4 py-2.5 text-[11px] font-bold text-white transition hover:bg-[#1478df]"
+                    <Link
+                        href="/dashboard/ajukan"
+                        className="mt-3 flex h-10 w-full items-center justify-center rounded-lg bg-[#2f8de4] text-xs font-semibold text-white hover:bg-[#2580d3] transition"
                     >
-                        Kembali Ke Beranda
-                    </button>
-
-                </section>
-
+                        Ajukan PKL
+                    </Link>
+                </aside>
             </div>
-
         </div>
     );
 }
