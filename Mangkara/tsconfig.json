@@ -17,6 +17,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@/auth": [
+        "./auth.ts"
+      ]
+    },
     "plugins": [
       {
         "name": "next"
