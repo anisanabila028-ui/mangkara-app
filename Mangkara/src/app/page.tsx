@@ -206,7 +206,8 @@ export default function LoginPage() {
                         type="button"
                         onClick={() =>
                             signIn("google", {
-                                redirectTo: "/dashboard",
+                                redirectTo: "/dashboard/beranda",
+                                prompt: "select_account",
                             })
                         }
                         className="w-full h-[35px] border border-[#d9d9d9] rounded-[8px] flex items-center justify-center gap-5 text-[12px] font-semibold text-[#333] hover:bg-gray-50"
