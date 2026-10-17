@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import InputField from "../../../components/ui/inputField";
 import SelectField from "../../../components/ui/selectField";
 import Button from "../../../components/ui/button";
+import { api, useApi, simpanToken } from "@/lib/api";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -26,43 +27,33 @@ export default function RegisterPage() {
   };
 
   const [isLoading, setIsLoading] = useState(false);
+  const [pesan, setPesan] = useState("");
 
-  /**
-   * ============================================================
-   * SLOT KONEKSI DATABASE — REGISTER
-   * ============================================================
-   * Isi bagian ini nanti saat database sudah siap, contoh:
-   *
-   * Supabase :
-   *   const { error } = await supabase.auth.signUp({
-   *     email: formData.email,
-   *     password: formData.password,
-   *   });
-   *   if (error) throw error;
-   *
-   * Firebase :
-   *   await createUserWithEmailAndPassword(auth, formData.email, formData.password);
-   *
-   * API sendiri :
-   *   await fetch("/api/register", {
-   *     method: "POST",
-   *     headers: { "Content-Type": "application/json" },
-   *     body: JSON.stringify(formData),
-   *   });
-   *
-   * Seluruh data form tersimpan di variabel `formData`
-   * (namaLengkap, email, password, sekolah, jurusan).
-   * ============================================================
-   */
+  // Daftar akun ke backend Strapi (/api/auth/local/register).
+  // Backend menerima: username, email, password, nama_lengkap, jurusan.
+  // Field "sekolah" tidak dikirim di sini karena backend belum menerimanya saat daftar.
   const simpanKeDatabase = async (): Promise<{ ok: boolean }> => {
-    // TODO: hubungkan ke database di sini
-    await new Promise((resolve) => setTimeout(resolve, 600)); // simulasi proses simpan
+    if (formData.password.length < 8) {
+      throw new Error("Password minimal 8 karakter");
+    }
+    const r = await api("/auth/local/register", {
+      method: "POST",
+      body: {
+        username: formData.email,
+        email: formData.email,
+        password: formData.password,
+        nama_lengkap: formData.namaLengkap,
+        jurusan: formData.jurusan,
+      },
+    });
+    simpanToken(r.jwt);
     return { ok: true };
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setPesan("");
 
     try {
       const hasil = await simpanKeDatabase();
@@ -72,18 +63,28 @@ export default function RegisterPage() {
         router.push("/authentic/complete-profile");
       }
     } catch (error) {
-      console.error("Register gagal:", error);
+      setPesan(error instanceof Error ? error.message : "Pendaftaran gagal");
     } finally {
       setIsLoading(false);
     }
   };
 
-  const opsiJurusan = [
+  // Daftar jurusan diambil dari backend (/api/daftar-jurusan).
+  // Kalau belum termuat atau gagal, pakai daftar cadangan di bawah.
+  const { data: dataJurusan } = useApi("/daftar-jurusan");
+  const jurusanCadangan = [
     { value: "PPLG", label: "Pengembangan Perangkat Lunak dan Gim (PPLG)" },
     { value: "MPLB", label: "Manajemen Perkantoran dan Layanan Bisnis (MPLB)" },
     { value: "AKL", label: "Akuntansi Keuangan dan Lembaga (AKL)" },
     { value: "PM", label: "Pemasaran (PM)" },
   ];
+  const opsiJurusan: { value: string; label: string }[] =
+    dataJurusan?.data?.length
+      ? dataJurusan.data.map((j: any) => ({
+        value: j.kode,
+        label: `${j.kode} - ${j.nama}`,
+      }))
+      : jurusanCadangan;
 
   return (
     <div className="min-h-screen w-full flex bg-[#F4F8FC]">
@@ -162,7 +163,7 @@ export default function RegisterPage() {
               label="Password"
               name="password"
               type="password"
-              placeholder="Minimal 6 karakter"
+              placeholder="Minimal 8 karakter"
               value={formData.password}
               onChange={handleInputChange}
               required
@@ -196,6 +197,9 @@ export default function RegisterPage() {
             >
               {isLoading ? "Memproses..." : "Daftar"}
             </Button>
+
+            {/* Pesan error dari backend */}
+            {pesan && <p className="text-red-500 text-xs">{pesan}</p>}
           </form>
 
           <div className="text-center text-xs text-gray-400 pt-2">

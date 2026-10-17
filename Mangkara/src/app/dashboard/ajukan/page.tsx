@@ -1,10 +1,17 @@
 "use client";
 
-import { ExternalLink, Info } from "lucide-react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { ExternalLink, Info, CheckCircle2 } from "lucide-react";
 
 const GOOGLE_FORM_URL = "https://forms.gle/JS3EsbnTcPmKzMfF6";
 
 export default function AjukanPKLPage() {
+    const router = useRouter();
+
+    // Jadi true setelah tombol "Isi Formulir" diklik (form terbuka di tab baru)
+    const [formDibuka, setFormDibuka] = useState(false);
+
     return (
         <div className="min-h-screen bg-[#f4f8ff]">
 
@@ -90,6 +97,7 @@ export default function AjukanPKLPage() {
                                 href={GOOGLE_FORM_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                onClick={() => setFormDibuka(true)}
                                 className="flex w-full max-w-[300px] items-center justify-center gap-2 rounded-md bg-[#1478df] px-6 py-3 text-xs font-semibold text-white transition hover:bg-[#096bcf] sm:w-auto"
                             >
                                 <ExternalLink size={15} />
@@ -100,6 +108,25 @@ export default function AjukanPKLPage() {
                         </div>
 
                     </div>
+
+
+                    {/* KONFIRMASI SETELAH FORM DIBUKA */}
+                    {formDibuka && (
+                        <div className="mt-5 flex flex-col gap-3 rounded-md border border-[#5da2ff] bg-[#e5f1ff] px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+
+                            <div>
+                                <p className="text-sm font-semibold text-[#263238]">
+                                    Sudah mengirim formulirnya?
+                                </p>
+                                <p className="mt-1 text-xs text-gray-600">
+                                    Setelah muncul tulisan formulir terkirim di Google
+                                    Form, klik tombol di samping untuk melanjutkan.
+                                </p>
+                            </div>
+
+
+                        </div>
+                    )}
 
 
                     {/* PERHATIAN */}
