@@ -1,12 +1,13 @@
 "use client";
 
 import { ExternalLink, Info } from "lucide-react";
+import BottomOrnament from "../../../components/ui/bottomOrnament";
 
 const GOOGLE_FORM_URL = "https://forms.gle/JS3EsbnTcPmKzMfF6";
 
 export default function AjukanPKLPage() {
     return (
-        <div className="min-h-screen bg-[#f4f8ff]">
+        <div className="min-h-screen bg-[#dcecff]">
 
             {/* CONTENT */}
             <main className="min-h-[calc(100vh-80px)] bg-[#dcecff] px-10 py-7">
@@ -140,6 +141,8 @@ export default function AjukanPKLPage() {
 
             </main>
 
+            {/* ---------- ORNAMEN BAWAH ---------- */}
+            <BottomOrnament />
         </div>
     );
 }

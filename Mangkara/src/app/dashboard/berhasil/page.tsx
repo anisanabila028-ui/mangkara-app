@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Check } from "lucide-react";
+import BottomOrnament from "../../../components/ui/bottomOrnament";
 
 export default function BerhasilPage() {
     const router = useRouter();
@@ -104,6 +105,9 @@ export default function BerhasilPage() {
                     </button>
                 </div>
             </div>
+
+            {/* ---------- ORNAMEN BAWAH ---------- */}
+            <BottomOrnament />
         </main>
     );
 }

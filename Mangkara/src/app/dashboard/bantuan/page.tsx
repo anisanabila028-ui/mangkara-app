@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { HelpCircle, ChevronRight, Mail, Phone, MapPin } from "lucide-react";
+import BottomOrnament from "../../../components/ui/bottomOrnament";
 
 export default function BantuanPage() {
   const topics = [
@@ -15,7 +16,7 @@ export default function BantuanPage() {
   ];
 
   return (
-    <div className="flex min-h-[calc(100vh-5rem)] flex-col justify-between">
+    <div className="flex min-h-[calc(100vh-4rem)] flex-col justify-between">
       <div className="px-6 pb-8 pt-7 md:px-8">
         <h1 className="text-xl font-bold text-gray-800 mb-1">Pusat Bantuan</h1>
         <p className="text-xs text-gray-400 mb-6">Temukan jawaban dari pertanyaan yang sering diajukan.</p>
@@ -90,6 +91,9 @@ export default function BantuanPage() {
           </ul>
         </div>
       </footer>
+
+      {/* ---------- ORNAMEN BAWAH ---------- */}
+      <BottomOrnament />
     </div>
   );
 }

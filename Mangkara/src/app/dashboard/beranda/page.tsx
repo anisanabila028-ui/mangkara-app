@@ -113,6 +113,9 @@ export default function BerandaPage() {
           </div>
         </div>
       </div>
+
+      {/* ---------- ORNAMEN BAWAH ---------- */}
+      <BottomOrnament />
     </div>
   );
 }

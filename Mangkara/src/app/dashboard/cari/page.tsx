@@ -1,5 +1,7 @@
 'use client';
 
+import BottomOrnament from "../../../components/ui/bottomOrnament";
+
 export default function CariPage() {
     return (
         <div className="max-w-6xl mx-auto">
@@ -79,6 +81,9 @@ export default function CariPage() {
                     </button>
                 </div>
             </div>
+
+            {/* ---------- ORNAMEN BAWAH ---------- */}
+            <BottomOrnament />
         </div>
     );
 }

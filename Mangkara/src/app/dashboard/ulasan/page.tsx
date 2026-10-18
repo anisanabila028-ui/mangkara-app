@@ -1,6 +1,7 @@
 "use client";
 
 import { Search, FileText, Star } from "lucide-react";
+import BottomOrnament from "../../../components/ui/bottomOrnament";
 
 const ulasan = [
     {
@@ -34,7 +35,7 @@ const ulasan = [
 
 export default function UlasanPage() {
     return (
-        <main className="relative min-h-[calc(100vh-70px)] overflow-hidden bg-[#eef6ff] px-5 py-8 md:px-7 lg:px-8">
+        <main className="relative min-h-[calc(100vh-4rem)] overflow-hidden bg-[#eef6ff] px-5 py-8 md:px-7 lg:px-8">
             {/* =========================
           HEADER
       ========================= */}
@@ -168,88 +169,7 @@ export default function UlasanPage() {
             {/* =========================
           ORNAMEN BAWAH
       ========================= */}
-            <BottomDecoration />
+            <BottomOrnament />
         </main>
-    );
-}
-
-/* =========================
-   ORNAMEN
-========================= */
-
-function BottomDecoration() {
-    return (
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[95px] overflow-hidden">
-            {/* LEFT */}
-            <svg
-                className="absolute bottom-0 left-0 h-[90px] w-[190px]"
-                viewBox="0 0 190 90"
-                fill="none"
-            >
-                <path
-                    d="M0 73C22 63 31 82 48 69C63 58 75 74 91 63C107 52 120 71 137 61C153 51 171 63 190 53"
-                    stroke="#69a9ef"
-                    strokeWidth="3"
-                />
-
-                <path
-                    d="M0 83C25 72 35 88 53 77C69 67 82 83 99 72C116 62 130 80 146 70C162 61 177 72 190 65"
-                    stroke="#69a9ef"
-                    strokeWidth="2"
-                />
-
-                <circle cx="53" cy="70" r="4" fill="#69a9ef" />
-                <circle cx="78" cy="75" r="3" fill="#f5c43b" />
-                <circle cx="105" cy="63" r="3" fill="#69a9ef" />
-            </svg>
-
-            {/* CENTER */}
-            <svg
-                className="absolute bottom-0 left-1/2 h-[70px] w-[190px] -translate-x-1/2"
-                viewBox="0 0 190 70"
-                fill="none"
-            >
-                <path
-                    d="M0 47C22 36 37 57 55 45C71 34 82 50 96 41C112 31 126 49 142 40C159 31 172 43 190 35"
-                    stroke="#69a9ef"
-                    strokeWidth="3"
-                />
-
-                <path
-                    d="M95 50C83 43 82 34 88 30C92 28 95 34 95 38C96 32 100 27 104 30C109 35 106 45 95 50Z"
-                    fill="#69a9ef"
-                />
-
-                <circle cx="95" cy="47" r="4" fill="#f5c43b" />
-                <circle cx="65" cy="42" r="3" fill="#f5c43b" />
-                <circle cx="124" cy="38" r="3" fill="#f5c43b" />
-            </svg>
-
-            {/* RIGHT */}
-            <svg
-                className="absolute bottom-0 right-0 h-[95px] w-[200px]"
-                viewBox="0 0 200 95"
-                fill="none"
-            >
-                <path
-                    d="M0 66C23 55 34 76 51 63C68 51 79 70 95 58C112 47 127 66 143 55C161 44 178 57 200 45"
-                    stroke="#69a9ef"
-                    strokeWidth="3"
-                />
-
-                <path
-                    d="M20 88C31 73 39 62 51 62C43 52 46 43 52 40C59 45 61 54 56 61C66 52 73 54 76 59C71 68 61 72 53 69C44 79 32 86 20 88Z"
-                    fill="#72acf0"
-                />
-
-                <path
-                    d="M151 92C157 76 168 65 181 65C173 55 177 46 184 44C191 50 191 60 186 66C195 60 201 64 197 73C190 80 181 82 173 79C166 87 159 91 151 92Z"
-                    fill="#72acf0"
-                />
-
-                <circle cx="92" cy="63" r="4" fill="#69a9ef" />
-                <circle cx="114" cy="55" r="3" fill="#f5c43b" />
-            </svg>
-        </div>
     );
 }

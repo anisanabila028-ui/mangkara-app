@@ -9,6 +9,7 @@ import {
     Clock,
     ExternalLink,
 } from "lucide-react";
+import BottomOrnament from "../../../components/ui/bottomOrnament";
 
 export default function DetailPKLPage() {
     return (
@@ -283,6 +284,9 @@ export default function DetailPKLPage() {
                 </div>
 
             </div>
+
+            {/* ---------- ORNAMEN BAWAH ---------- */}
+            <BottomOrnament />
         </div>
     );
 }

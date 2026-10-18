@@ -1,5 +1,7 @@
 "use client";
 
+import BottomOrnament from "../../../components/ui/bottomOrnament";
+
 /**
  * HALAMAN AKUN — PLACEHOLDER
  * File ini awalnya kosong (0 byte) dan menyebabkan `npm run build` gagal
@@ -19,6 +21,9 @@ export default function AkunPage() {
           Konten profil pengguna akan ditampilkan di sini.
         </p>
       </div>
+
+      {/* ---------- ORNAMEN BAWAH ---------- */}
+      <BottomOrnament />
     </div>
   );
 }
