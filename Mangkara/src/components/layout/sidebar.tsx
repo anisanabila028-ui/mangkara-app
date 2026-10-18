@@ -11,7 +11,7 @@ import {
   MessageSquare, 
   User, 
   HelpCircle,
-  X 
+  X
 } from "lucide-react";
 
 interface SidebarProps {
@@ -32,14 +32,13 @@ export default function Sidebar({
     { icon: Search, label: "Cari Tempat PKL", href: "/dashboard/cari" },
     { icon: MessageSquare, label: "Ulasan", href: "/dashboard/ulasan" },
     { icon: User, label: "Akun", href: "/dashboard/akun" },
-    { icon: HelpCircle, label: "Bantuan", href: "/dashboard/bantuan" },
   ];
 
   return (
     <>
       {/* Overlay Gelap - hanya di layar kecil (mode drawer) */}
       {isOpen && (
-        <div 
+        <div
           onClick={onClose}
           className="fixed inset-0 bg-black/30 z-40 transition-opacity lg:hidden"
         />
@@ -47,9 +46,8 @@ export default function Sidebar({
 
       {/* Sidebar Container */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-white border-r border-slate-100 z-50 p-5 flex flex-col justify-between transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 left-0 h-full w-64 bg-white border-r border-slate-100 z-50 p-5 flex flex-col justify-between transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <div>
           {/* Header Sidebar & Tombol Close */}
@@ -66,9 +64,9 @@ export default function Sidebar({
                 MANGKARA
               </span>
             </div>
-            
+
             {/* Tombol X untuk menutup sidebar */}
-            <button 
+            <button
               onClick={onClose}
               className="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition"
             >

@@ -17,9 +17,10 @@ export default function Topbar({ onMenuClick }: TopbarProps) {
             type="button"
             onClick={onMenuClick}
             aria-label="Buka atau tutup sidebar"
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-700 transition hover:bg-slate-100"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-700 transition hover:bg-slate-100 sm:h-10 sm:w-10"
           >
-            <Menu size={24} />
+            <Menu size={20} className="sm:hidden" />
+            <Menu size={24} className="hidden sm:block" />
           </button>
 
           {/* TAGLINE */}
@@ -28,19 +29,25 @@ export default function Topbar({ onMenuClick }: TopbarProps) {
           </span>
         </div>
 
-        {/* SISI KANAN: Lonceng Notifikasi & Profile User */}
-        <div className="flex items-center gap-3">
+        {/* SISI KANAN: Notifikasi dan Profil */}
+        <div className="ml-2 flex shrink-0 items-center gap-2 sm:gap-3">
           <button
             type="button"
             aria-label="Notifikasi"
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition hover:bg-slate-200"
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition hover:bg-slate-200 sm:h-10 sm:w-10"
           >
-            <Bell size={20} />
+            <Bell size={17} className="sm:hidden" />
+            <Bell size={20} className="hidden sm:block" />
           </button>
 
-          <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-blue-500 text-white shadow-sm transition hover:bg-blue-600">
-            <User size={22} />
-          </div>
+          <button
+            type="button"
+            aria-label="Profil pengguna"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-500 text-white shadow-sm transition hover:bg-blue-600 sm:h-10 sm:w-10"
+          >
+            <User size={19} className="sm:hidden" />
+            <User size={22} className="hidden sm:block" />
+          </button>
         </div>
       </header>
     </>

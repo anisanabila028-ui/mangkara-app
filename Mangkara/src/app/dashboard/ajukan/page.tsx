@@ -2,27 +2,32 @@
 
 import { ExternalLink, Info } from "lucide-react";
 import BottomOrnament from "../../../components/ui/bottomOrnament";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { ExternalLink, Info, CheckCircle2 } from "lucide-react";
 
 const GOOGLE_FORM_URL = "https://forms.gle/JS3EsbnTcPmKzMfF6";
 
 export default function AjukanPKLPage() {
+    const router = useRouter();
+
+    // Jadi true setelah tombol "Isi Formulir" diklik (form terbuka di tab baru)
+    const [formDibuka, setFormDibuka] = useState(false);
+
     return (
         <div className="min-h-screen bg-[#dcecff]">
 
-            {/* CONTENT */}
-            <main className="min-h-[calc(100vh-80px)] bg-[#dcecff] px-10 py-7">
+            <main className="min-h-screen bg-[#dcecff] px-4 py-5 sm:px-6 lg:px-10 lg:py-7">
 
                 {/* JUDUL */}
                 <div className="mb-5">
-
-                    <h1 className="text-2xl font-bold text-[#263238]">
+                    <h1 className="text-xl font-bold text-[#263238] sm:text-2xl">
                         Ajukan PKL di PT Digital Indonesia
                     </h1>
 
                     <p className="mt-1 text-sm text-gray-600">
                         Lengkapi data dan persyaratan yang dibutuhkan oleh perusahaan.
                     </p>
-
                 </div>
 
 
@@ -31,11 +36,10 @@ export default function AjukanPKLPage() {
 
                     <Info
                         size={20}
-                        className="mt-0.5 text-[#1478df]"
+                        className="mt-0.5 shrink-0 text-[#1478df]"
                     />
 
                     <div>
-
                         <p className="text-sm font-semibold text-[#1478df]">
                             Informasi pengajuan PKL
                         </p>
@@ -43,16 +47,14 @@ export default function AjukanPKLPage() {
                         <p className="mt-1 text-xs text-gray-600">
                             Data dan dokumen pengajuan akan diisi melalui formulir Google Form.
                         </p>
-
                     </div>
 
                 </div>
 
 
                 {/* CARD */}
-                <div className="mx-auto max-w-[900px] rounded-lg border border-[#5da2ff] bg-white p-7 shadow-sm">
+                <div className="mx-auto w-full max-w-[900px] rounded-lg border border-[#5da2ff] bg-white p-5 shadow-sm sm:p-7">
 
-                    {/* DATA DIRI */}
                     <h2 className="mb-2 text-lg font-bold text-[#263238]">
                         Data Diri
                     </h2>
@@ -65,26 +67,23 @@ export default function AjukanPKLPage() {
 
 
                     {/* GOOGLE FORM */}
-                    <div className="rounded-lg border border-[#b9d9ff] bg-[#f8fbff] p-8 text-center">
+                    <div className="rounded-lg border border-[#b9d9ff] bg-[#f8fbff] p-5 text-center sm:p-8">
 
-                        {/* ICON */}
-                        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#e5f1ff]">
-
-                            <ExternalLink
-                                size={26}
-                                className="text-[#1478df]"
+                        {/* FOTO */}
+                        <div className="mx-auto mb-3 flex items-center justify-center">
+                            <img
+                                src="/ajukan-pkl.png"
+                                alt="Formulir Pengajuan PKL"
+                                className="h-[140px] w-[140px] object-contain"
                             />
-
                         </div>
 
 
-                        {/* JUDUL */}
                         <h3 className="text-base font-bold text-[#263238]">
                             Formulir Pengajuan PKL
                         </h3>
 
 
-                        {/* DESKRIPSI */}
                         <p className="mx-auto mt-2 max-w-[600px] text-xs leading-5 text-gray-500">
                             Silakan isi formulir pengajuan PKL untuk melengkapi
                             data diri, nomor WhatsApp, asal sekolah, jurusan,
@@ -93,25 +92,43 @@ export default function AjukanPKLPage() {
                         </p>
 
 
-                        {/* TOMBOL */}
+                        {/* LINK GOOGLE FORM */}
                         <div className="mt-6 flex justify-center">
 
                             <a
                                 href={GOOGLE_FORM_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-2 rounded-md bg-[#1478df] px-6 py-3 text-xs font-semibold text-white transition hover:bg-[#096bcf]"
+                                onClick={() => setFormDibuka(true)}
+                                className="flex w-full max-w-[300px] items-center justify-center gap-2 rounded-md bg-[#1478df] px-6 py-3 text-xs font-semibold text-white transition hover:bg-[#096bcf] sm:w-auto"
                             >
-
                                 <ExternalLink size={15} />
 
                                 Isi Formulir Pengajuan PKL
-
                             </a>
 
                         </div>
 
                     </div>
+
+
+                    {/* KONFIRMASI SETELAH FORM DIBUKA */}
+                    {formDibuka && (
+                        <div className="mt-5 flex flex-col gap-3 rounded-md border border-[#5da2ff] bg-[#e5f1ff] px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+
+                            <div>
+                                <p className="text-sm font-semibold text-[#263238]">
+                                    Sudah mengirim formulirnya?
+                                </p>
+                                <p className="mt-1 text-xs text-gray-600">
+                                    Setelah muncul tulisan formulir terkirim di Google
+                                    Form, klik tombol di samping untuk melanjutkan.
+                                </p>
+                            </div>
+
+
+                        </div>
+                    )}
 
 
                     {/* PERHATIAN */}
@@ -128,14 +145,6 @@ export default function AjukanPKLPage() {
                         </p>
 
                     </div>
-
-                </div>
-
-
-                {/* BAGIAN BAWAH */}
-                <div className="mt-8 h-20 overflow-hidden rounded-b-lg">
-
-                    <div className="h-full w-full bg-gradient-to-t from-[#d3e7ff] to-transparent" />
 
                 </div>
 
