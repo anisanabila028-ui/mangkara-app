@@ -1,91 +1,120 @@
 "use client";
 
+import Link from "next/link";
+import { 
+  Bookmark, 
+  History, 
+  Settings, 
+  LogOut, 
+  ChevronRight, 
+  User 
+} from "lucide-react";
 import BottomOrnament from "../../../components/ui/bottomOrnament";
 
-/**
- * HALAMAN AKUN — PLACEHOLDER
- * File ini awalnya kosong (0 byte) dan menyebabkan `npm run build` gagal
- * dengan error "is not a module". Isi di bawah hanya pembungkus minimal
- * supaya aplikasi bisa jalan. Silakan ganti dengan desain aslinya.
- */
-import Link from "next/link";
-import { Bookmark, History, Settings, LogOut, ChevronRight, UserCircle2 } from "lucide-react";
-
-const menu = [
-  { label: "Tempat Tersimpan", href: "/tempat-tersimpan", icon: Bookmark },
-  { label: "Riwayat Kontribusi", href: "/riwayat-kontribusi", icon: History },
-  { label: "Pengaturan Akun", href: "/pengaturan-akun", icon: Settings },
+const menuItems = [
+  { label: "Tempat Tersimpan", href: "/dashboard/daftar-pkl", icon: Bookmark },
+  { label: "Riwayat Kontribusi", href: "/dashboard/ulasan", icon: History },
+  { label: "Pengaturan Akun", href: "#", icon: Settings },
 ];
 
 export default function AkunPage() {
   return (
-    <div className="p-6 lg:p-8">
-      <h1 className="text-xl font-bold text-slate-800">Akun Saya</h1>
-      <p className="text-xs text-slate-500 mt-1">
-        Kelola informasi profil, preferensi tempat PKL, dan akun Anda.
-      </p>
-
-      {/* Kartu profil */}
-      <div className="mt-6 flex items-center gap-4 bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
-        <UserCircle2 className="w-14 h-14 text-blue-600" strokeWidth={1.5} />
+    <div className="min-h-screen bg-[#f0f6ff] flex flex-col justify-between relative pb-28 sm:pb-36 px-4 py-5 sm:px-6">
+      <main className="w-full max-w-2xl mx-auto space-y-4">
+        {/* HEADER */}
         <div>
-          <div className="flex items-center gap-2">
-            <h2 className="text-lg font-bold text-slate-800">Aisyah Putri</h2>
-            <span className="text-[10px] font-medium text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">
-              Siswa
-            </span>
+          <h1 className="text-xl font-bold text-gray-900 sm:text-2xl leading-snug">
+            Akun Saya
+          </h1>
+          <p className="mt-0.5 text-xs text-gray-500 leading-relaxed">
+            Kelola informasi profil, preferensi tempat PKL, dan akun Anda.
+          </p>
+        </div>
+
+        {/* KARTU PROFIL */}
+        <div className="flex items-center gap-3.5 rounded-2xl border border-gray-200/80 bg-white p-4 shadow-sm">
+          {/* Avatar Icon */}
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#1976ff] text-white shadow-sm">
+            <User className="h-8 w-8 fill-white text-white" />
           </div>
-          <p className="text-xs text-slate-500">aisyah.putri@email.com</p>
-        </div>
-      </div>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-[1.6fr_1fr]">
-        {/* Informasi sekolah */}
-        <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
-          <h3 className="text-sm font-bold text-slate-800">Informasi Sekolah</h3>
-          <dl className="mt-4 space-y-4">
-            <div>
-              <dt className="text-[10px] text-slate-400">Jurusan</dt>
-              <dd className="text-xs font-semibold text-slate-800">RPL (Rekayasa Perangkat Lunak)</dd>
+          <div>
+            <div className="flex items-center gap-2">
+              <h2 className="text-base font-bold text-gray-900">
+                Aisyah Putri
+              </h2>
+              <span className="rounded-md bg-blue-100/70 px-2 py-0.5 text-[10px] font-semibold text-[#1976ff]">
+                Siswa
+              </span>
             </div>
-            <div>
-              <dt className="text-[10px] text-slate-400">Sekolah</dt>
-              <dd className="text-xs font-semibold text-slate-800">SMK Negeri 1 Bandung</dd>
-            </div>
-            <div>
-              <dt className="text-[10px] text-slate-400">Bergabung Sejak</dt>
-              <dd className="text-xs font-semibold text-slate-800">10 Mei 2024</dd>
-            </div>
-          </dl>
+            <p className="mt-0.5 text-xs text-gray-500">
+              aisyah.putri@email.com
+            </p>
+          </div>
         </div>
 
-        {/* Menu */}
-        <div className="bg-white border border-slate-100 rounded-2xl p-2 shadow-sm">
-          {menu.map(({ label, href, icon: Icon }) => (
+        {/* INFORMASI SEKOLAH */}
+        <div className="rounded-2xl border border-gray-200/80 bg-white p-4 shadow-sm">
+          <h3 className="text-sm font-bold text-gray-900 mb-3">
+            Informasi Sekolah
+          </h3>
+
+          <div className="space-y-3">
+            <div>
+              <p className="text-[11px] text-gray-500">Jurusan</p>
+              <p className="text-xs font-bold text-gray-900 mt-0.5">
+                RPL (Rekayasa Perangkat Lunak)
+              </p>
+            </div>
+
+            <div>
+              <p className="text-[11px] text-gray-500">Sekolah</p>
+              <p className="text-xs font-bold text-gray-900 mt-0.5">
+                SMK Negeri 1 Bandung
+              </p>
+            </div>
+
+            <div>
+              <p className="text-[11px] text-gray-500">Bergabung Sejak</p>
+              <p className="text-xs font-bold text-gray-900 mt-0.5">
+                10 Mei 2024
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* MENU TINDAKAN */}
+        <div className="rounded-2xl border border-gray-200/80 bg-white p-4 shadow-sm space-y-4">
+          {menuItems.map(({ label, href, icon: Icon }) => (
             <Link
               key={label}
               href={href}
-              className="flex items-center justify-between px-4 py-3 rounded-xl text-xs text-slate-700 hover:bg-slate-50"
+              className="flex items-center justify-between text-xs text-gray-700 hover:text-blue-600 transition"
             >
-              <span className="flex items-center gap-3">
+              <span className="flex items-center gap-3 font-medium">
                 <Icon className="w-4 h-4 text-slate-500" />
                 {label}
               </span>
               <ChevronRight className="w-4 h-4 text-slate-400" />
             </Link>
           ))}
+
+          {/* Tombol Keluar */}
           <button
-            onClick={() => {/* TODO: logout */ }}
-            className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs text-red-500 hover:bg-red-50"
+            type="button"
+            onClick={() => {
+              window.location.href = "/";
+            }}
+            className="w-full flex items-center justify-between text-xs text-red-500 hover:text-red-600 transition pt-1"
           >
-            <span className="flex items-center gap-3">
-              <LogOut className="w-4 h-4" />
+            <span className="flex items-center gap-3 font-semibold">
+              <LogOut className="w-4 h-4 text-red-500" />
               Keluar
             </span>
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="w-4 h-4 text-red-500" />
           </button>
         </div>
-      </div>
+      </main>
 
       {/* ---------- ORNAMEN BAWAH ---------- */}
       <BottomOrnament />
