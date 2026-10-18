@@ -1,6 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { Check } from "lucide-react";
+import BottomOrnament from "../../../components/ui/bottomOrnament";
 import { Clock3, FileCheck2 } from "lucide-react";
 
 export default function BerhasilPage() {
@@ -94,6 +96,9 @@ export default function BerhasilPage() {
                 </button>
 
             </div>
-        </div>
+
+            {/* ---------- ORNAMEN BAWAH ---------- */}
+            <BottomOrnament />
+        </main>
     );
 }

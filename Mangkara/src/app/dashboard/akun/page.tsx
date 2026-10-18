@@ -1,5 +1,13 @@
 "use client";
 
+import BottomOrnament from "../../../components/ui/bottomOrnament";
+
+/**
+ * HALAMAN AKUN — PLACEHOLDER
+ * File ini awalnya kosong (0 byte) dan menyebabkan `npm run build` gagal
+ * dengan error "is not a module". Isi di bawah hanya pembungkus minimal
+ * supaya aplikasi bisa jalan. Silakan ganti dengan desain aslinya.
+ */
 import Link from "next/link";
 import { Bookmark, History, Settings, LogOut, ChevronRight, UserCircle2 } from "lucide-react";
 
@@ -78,6 +86,9 @@ export default function AkunPage() {
           </button>
         </div>
       </div>
+
+      {/* ---------- ORNAMEN BAWAH ---------- */}
+      <BottomOrnament />
     </div>
   );
 }

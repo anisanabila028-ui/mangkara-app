@@ -7,6 +7,7 @@ import {
     Clock,
     Building2,
 } from "lucide-react";
+import BottomOrnament from "../../../components/ui/bottomOrnament";
 
 /**
  * Data sementara (dummy). Nanti ganti dengan data dari backend,
@@ -164,6 +165,9 @@ export default function DetailPerusahaanPage() {
                     </Link>
                 </aside>
             </div>
+
+            {/* ---------- ORNAMEN BAWAH ---------- */}
+            <BottomOrnament />
         </div>
     );
 }

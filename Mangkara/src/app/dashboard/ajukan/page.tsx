@@ -1,5 +1,7 @@
 "use client";
 
+import { ExternalLink, Info } from "lucide-react";
+import BottomOrnament from "../../../components/ui/bottomOrnament";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ExternalLink, Info, CheckCircle2 } from "lucide-react";
@@ -13,7 +15,7 @@ export default function AjukanPKLPage() {
     const [formDibuka, setFormDibuka] = useState(false);
 
     return (
-        <div className="min-h-screen bg-[#f4f8ff]">
+        <div className="min-h-screen bg-[#dcecff]">
 
             <main className="min-h-screen bg-[#dcecff] px-4 py-5 sm:px-6 lg:px-10 lg:py-7">
 
@@ -148,6 +150,8 @@ export default function AjukanPKLPage() {
 
             </main>
 
+            {/* ---------- ORNAMEN BAWAH ---------- */}
+            <BottomOrnament />
         </div>
     );
 }
