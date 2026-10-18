@@ -50,181 +50,160 @@ export default function LoginPage() {
     };
 
     return (
-        <main className="min-h-screen w-full bg-[#eff6ff] flex items-center justify-center px-4 py-6 sm:px-6">
-            <div className="w-full max-w-[750px]">
+        <main className="relative min-h-screen w-full bg-[#f0f6ff] flex flex-col justify-center items-center px-4 py-8 sm:px-6">
+            <div className="w-full max-w-[420px] bg-white rounded-2xl shadow-sm border border-gray-100 px-6 py-8 sm:px-8 sm:py-10 z-10">
 
-
-                {/* Card */}
-                <div className="w-full max-w-[660px] bg-white rounded-lg px-5 py-8 sm:px-10 sm:py-10 md:px-12 md:py-11">
-
-                    <div>
-                        {/* Logo */}
-                        <div className="flex items-center justify-center gap-1 mb-1">
-                            <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl">
-                                <img
-                                    src="/logmangkara.png"
-                                    alt="Logo Mangkar"
-                                    className="h-full w-full object-cover"
-                                />
-                            </div>
-                            <span className="font-bold text-blue-600 text-lg tracking-wide">MANGKARA</span>
-                        </div>
-                    </div>
-
-                    {/* Judul */}
-                    <div className="text-center">
-                        <h1 className="text-[#263238] font-bold text-[22px]">
-                            Masuk ke Mangkara
-                        </h1>
-
-                        <p className="text-[#718096] text-[12px] mt-2">
-                            Temukan PKL yang sesuai dengan jurusanmu
-                        </p>
-                    </div>
-
-                    {/* Form */}
-                    <form className="mt-7" onSubmit={handleSubmit}>
-
-                        {/* Email */}
-                        <div>
-                            <label
-                                htmlFor="email"
-                                className="block text-[#4a5568] text-[12px] font-medium mb-2"
-                            >
-                                Email
-                            </label>
-
-                            <div className="relative">
-
-                                <Mail
-                                    size={15}
-                                    className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9ca3af]"
-                                />
-
-                                <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    value={formData.email}
-                                    onChange={handleInputChange}
-                                    required
-                                    placeholder="Masukan Email Anda"
-                                    className="w-full h-[34px] rounded-[8px] border border-[#d9d9d9] pl-11 pr-3 text-[12px] outline-none focus:border-[#2f8de4]"
-                                />
-
-                            </div>
-                        </div>
-
-                        {/* Password */}
-                        <div className="mt-3">
-
-                            <label
-                                htmlFor="password"
-                                className="block text-[#4a5568] text-[12px] font-medium mb-2"
-                            >
-                                Password
-                            </label>
-
-                            <div className="relative">
-
-                                <Lock
-                                    size={15}
-                                    className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9ca3af]"
-                                />
-
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type={showPassword ? "text" : "password"}
-                                    value={formData.password}
-                                    onChange={handleInputChange}
-                                    required
-                                    minLength={6}
-                                    placeholder="Minimal 6 karakter"
-                                    className="w-full h-[34px] rounded-[8px] border border-[#d9d9d9] pl-11 pr-10 text-[12px] outline-none focus:border-[#2f8de4]"
-                                />
-
-                                <button
-                                    type="button"
-                                    onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#777]"
-                                >
-                                    {showPassword ? (
-                                        <EyeOff size={15} />
-                                    ) : (
-                                        <Eye size={15} />
-                                    )}
-                                </button>
-
-                            </div>
-                        </div>
-
-                        {/* Tombol Masuk */}
-                        <button
-                            type="submit"
-                            disabled={isLoading}
-                            className="w-full h-[35px] mt-4 bg-[#2f8de4] hover:bg-[#2580d3] text-white text-[12px] font-semibold rounded-[8px] disabled:opacity-60"
-                        >
-                            {isLoading ? "Memproses..." : "Masuk"}
-                        </button>
-
-                        {/* Pesan error dari backend */}
-                        {pesan && (
-                            <p className="text-red-500 text-[12px] mt-2">{pesan}</p>
-                        )}
-
-                    </form>
-
-                    {/* Atau */}
-                    <div className="flex items-center gap-4 my-7">
-
-                        <div className="flex-1 h-px bg-[#dddddd]" />
-
-                        <span className="text-[#888888] text-[11px]">
-                            atau
-                        </span>
-
-                        <div className="flex-1 h-px bg-[#dddddd]" />
-
-                    </div>
-
-                    {/* Google */}
-                    <button
-                        type="button"
-                        onClick={() =>
-                            signIn("google", {
-                                redirectTo: "/dashboard/beranda",
-                                prompt: "select_account",
-                            })
-                        }
-                        className="w-full h-[35px] border border-[#d9d9d9] rounded-[8px] flex items-center justify-center gap-5 text-[12px] font-semibold text-[#333] hover:bg-gray-50"
-                    >
+                {/* Logo */}
+                <div className="flex items-center justify-center gap-2 mb-4">
+                    <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg">
                         <img
-                            src="/ggl.png"
-                            alt="Google"
-                            className="w-4 h-4 object-contain"
+                            src="/logmangkara.png"
+                            alt="Logo Mangkara"
+                            className="h-full w-full object-contain"
                         />
+                    </div>
+                    <span className="font-extrabold text-xl tracking-wider text-blue-600">
+                        MANGKARA
+                    </span>
+                </div>
 
-                        <span>
-                            Masuk dengan Google
-                        </span>
+                {/* Judul */}
+                <div className="text-center mb-6">
+                    <h1 className="text-[#1a202c] font-bold text-2xl sm:text-[26px]">
+                        Masuk ke Mangkara
+                    </h1>
+
+                    <p className="text-gray-500 text-xs sm:text-sm mt-1.5 leading-relaxed">
+                        Temukan PKL yang sesuai dengan jurusanmu
+                    </p>
+                </div>
+
+                {/* Form */}
+                <form onSubmit={handleSubmit} className="space-y-4">
+
+                    {/* Email */}
+                    <div>
+                        <label
+                            htmlFor="email"
+                            className="block text-gray-700 text-xs sm:text-sm font-medium mb-1.5"
+                        >
+                            Email
+                        </label>
+
+                        <div className="relative">
+                            <Mail
+                                size={17}
+                                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                            />
+
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                required
+                                placeholder="Masukan Email Anda"
+                                className="w-full h-11 rounded-xl border border-gray-200 pl-11 pr-3 text-xs sm:text-sm text-gray-800 outline-none transition focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Password */}
+                    <div>
+                        <label
+                            htmlFor="password"
+                            className="block text-gray-700 text-xs sm:text-sm font-medium mb-1.5"
+                        >
+                            Password
+                        </label>
+
+                        <div className="relative">
+                            <Lock
+                                size={17}
+                                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"
+                            />
+
+                            <input
+                                id="password"
+                                name="password"
+                                type={showPassword ? "text" : "password"}
+                                value={formData.password}
+                                onChange={handleInputChange}
+                                required
+                                minLength={6}
+                                placeholder="Minimal 6 karakter"
+                                className="w-full h-11 rounded-xl border border-gray-200 pl-11 pr-11 text-xs sm:text-sm text-gray-800 outline-none transition focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                            />
+
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                            >
+                                {showPassword ? (
+                                    <EyeOff size={18} />
+                                ) : (
+                                    <Eye size={18} />
+                                )}
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Tombol Masuk */}
+                    <button
+                        type="submit"
+                        disabled={isLoading}
+                        className="w-full h-11 mt-2 bg-[#1976ff] hover:bg-[#1466dc] text-white text-sm font-semibold rounded-xl shadow-md shadow-blue-200 transition active:scale-[0.99] disabled:opacity-60"
+                    >
+                        {isLoading ? "Memproses..." : "Masuk"}
                     </button>
 
-                    {/* JALUR KE HALAMAN REGISTER */}
-                    <p className="text-center text-[12px] text-[#718096] mt-6">
-                        Belum punya akun?{" "}
-                        <Link
-                            href="/authentic/register"
-                            className="text-[#2f8de4] font-semibold hover:underline"
-                        >
-                            Daftar
-                        </Link>
-                    </p>
+                    {/* Pesan error dari backend */}
+                    {pesan && (
+                        <p className="text-red-500 text-xs text-center mt-2">{pesan}</p>
+                    )}
+                </form>
 
+                {/* Atau */}
+                <div className="flex items-center gap-3 my-5">
+                    <div className="flex-1 h-px bg-gray-200" />
+                    <span className="text-gray-400 text-xs">
+                        atau
+                    </span>
+                    <div className="flex-1 h-px bg-gray-200" />
                 </div>
+
+                {/* Google */}
+                <button
+                    type="button"
+                    onClick={() =>
+                        signIn("google", {
+                            redirectTo: "/dashboard/beranda",
+                            prompt: "select_account",
+                        })
+                    }
+                    className="w-full h-11 border border-gray-200 rounded-xl flex items-center justify-center gap-3 text-xs sm:text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 transition active:scale-[0.99]"
+                >
+                    <img
+                        src="/ggl.png"
+                        alt="Google"
+                        className="w-4 h-4 object-contain"
+                    />
+                    <span>Masuk dengan Google</span>
+                </button>
+
+                {/* JALUR KE HALAMAN REGISTER */}
+                <p className="text-center text-xs text-gray-500 mt-5">
+                    Belum punya akun?{" "}
+                    <Link
+                        href="/authentic/register"
+                        className="text-blue-600 font-semibold hover:underline"
+                    >
+                        Daftar
+                    </Link>
+                </p>
             </div>
-
-
-        </main >
+        </main>
     );
 }

@@ -56,31 +56,31 @@ export default function RekomendasiPage() {
     const router = useRouter();
 
     return (
-        <main className="relative min-h-[calc(100vh-4rem)] overflow-hidden bg-white px-5 py-8 md:px-8 lg:px-10">
+        <main className="relative min-h-[calc(100vh-4rem)] overflow-hidden bg-white px-4 py-6 pb-28 sm:px-6 sm:pb-36 md:px-8 lg:px-10">
             {/* ---------- JUDUL ---------- */}
             <header className="max-w-4xl">
-                <h1 className="text-[22px] font-bold text-[#263238]">
+                <h1 className="text-xl font-bold text-[#263238] sm:text-[22px]">
                     Rekomendasi Untukmu
                 </h1>
 
-                <p className="mt-1 text-xs text-[#78909c]">
+                <p className="mt-1 text-xs leading-relaxed text-[#78909c]">
                     Tempat PKL terbaik yang dikurasi khusus berdasarkan jurusan
                     dan kompetensi keahlianmu.
                 </p>
             </header>
 
             {/* ---------- DAFTAR KARTU ---------- */}
-            <div className="mt-7 max-w-4xl space-y-4">
+            <div className="mt-5 max-w-4xl space-y-3.5 sm:mt-7 sm:space-y-4">
                 {daftarRekomendasi.map((tempat) => (
                     <article
                         key={tempat.id}
-                        className="flex flex-col gap-4 rounded-xl border border-[#eef1f5] bg-white px-4 py-3 shadow-sm transition hover:shadow-md sm:flex-row sm:items-center sm:justify-between"
+                        className="flex flex-col gap-3 rounded-2xl border border-gray-200/80 bg-white p-3.5 shadow-sm transition hover:shadow-md"
                     >
-                        {/* BAGIAN KIRI: FOTO + INFORMASI */}
-                        <div className="flex min-w-0 items-center gap-4">
-                            {/* Thumbnail (icon sebagai cadangan jika gambar gagal dimuat) */}
-                            <div className="relative flex h-12 w-16 shrink-0 items-center justify-center overflow-hidden rounded-md bg-slate-100">
-                                <Building2 size={22} className="text-slate-400" />
+                        {/* BAGIAN ATAS: FOTO + INFORMASI */}
+                        <div className="flex items-center gap-3.5">
+                            {/* Thumbnail */}
+                            <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-xl bg-slate-100">
+                                <Building2 size={22} className="absolute inset-0 m-auto text-slate-300" />
 
                                 <img
                                     src={tempat.gambar}
@@ -88,51 +88,51 @@ export default function RekomendasiPage() {
                                     loading="lazy"
                                     className="absolute inset-0 h-full w-full object-cover"
                                     onError={(e) => {
-                                        // Sembunyikan gambar kalau URL-nya gagal,
-                                        // biar icon Building2 di belakangnya tampil.
                                         e.currentTarget.style.display = "none";
                                     }}
                                 />
                             </div>
 
                             {/* Teks */}
-                            <div className="min-w-0">
-                                <h2 className="truncate text-sm font-bold text-[#263238]">
+                            <div className="min-w-0 flex-1">
+                                <h2 className="text-sm font-bold text-gray-900 truncate">
                                     {tempat.nama}
                                 </h2>
 
-                                <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-[#78909c]">
+                                <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500">
                                     {/* Lokasi */}
-                                    <span className="flex items-center gap-1">
-                                        <MapPin size={13} />
+                                    <span className="flex shrink-0 items-center gap-1">
+                                        <MapPin size={12} className="text-gray-400" />
                                         {tempat.lokasi}
                                     </span>
 
                                     {/* Kuota */}
-                                    <span>
+                                    <span className="shrink-0">
                                         Sisa Kuota:{" "}
-                                        <b className="text-[#1976ff]">
+                                        <b className="text-blue-600 font-semibold">
                                             {tempat.kuota}
                                         </b>
                                     </span>
 
                                     {/* Rating */}
-                                    <span className="flex items-center gap-1 font-semibold text-[#f5a400]">
-                                        <Star size={13} fill="currentColor" />
+                                    <span className="flex shrink-0 items-center gap-1 font-semibold text-[#f5a400]">
+                                        <Star size={12} fill="currentColor" className="shrink-0" />
                                         {tempat.rating}
                                     </span>
                                 </div>
                             </div>
                         </div>
 
-                        {/* BAGIAN KANAN: TOMBOL DETAIL */}
-                        <button
-                            type="button"
-                            onClick={() => router.push("/dashboard/detail")}
-                            className="shrink-0 self-start rounded-lg border border-[#f5c43b] bg-[#fffdf0] px-4 py-2 text-xs font-medium text-[#1976ff] transition hover:bg-[#fff7d6] sm:self-auto"
-                        >
-                            Lihat Detail
-                        </button>
+                        {/* BAGIAN BAWAH: TOMBOL KUNING LIHAT DETAIL */}
+                        <div>
+                            <button
+                                type="button"
+                                onClick={() => router.push(`/dashboard/detail/${tempat.id}`)}
+                                className="rounded-lg border border-[#f5c43b] bg-[#fff082] hover:bg-[#ffe566] px-4 py-1.5 text-xs font-semibold text-[#1976ff] transition active:scale-[0.98] inline-block"
+                            >
+                                Lihat Detail
+                            </button>
+                        </div>
                     </article>
                 ))}
             </div>

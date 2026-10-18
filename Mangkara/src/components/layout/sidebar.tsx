@@ -32,6 +32,7 @@ export default function Sidebar({
     { icon: Search, label: "Cari Tempat PKL", href: "/dashboard/cari" },
     { icon: MessageSquare, label: "Ulasan", href: "/dashboard/ulasan" },
     { icon: User, label: "Akun", href: "/dashboard/akun" },
+    { icon: HelpCircle, label: "Bantuan", href: "/dashboard/bantuan" },
   ];
 
   return (
