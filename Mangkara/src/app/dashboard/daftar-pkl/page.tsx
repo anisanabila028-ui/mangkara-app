@@ -19,7 +19,7 @@ const dataTempat = [
         lokasi: "Bandung",
         kuota: "5",
         rating: "4.6",
-        gambar: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=300&q=80",
+        gambar: "/fto1.jpeg",
     },
     {
         id: "2",
@@ -27,7 +27,7 @@ const dataTempat = [
         lokasi: "Cimahi",
         kuota: "3",
         rating: "4.4",
-        gambar: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=300&q=80",
+        gambar: "/fto3.jpeg",
     },
     {
         id: "3",
@@ -35,7 +35,7 @@ const dataTempat = [
         lokasi: "Jakarta",
         kuota: "2",
         rating: "4.3",
-        gambar: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=300&q=80",
+        gambar: "/fto2.jpeg",
     },
     {
         id: "4",
@@ -43,7 +43,7 @@ const dataTempat = [
         lokasi: "Bandung",
         kuota: "4",
         rating: "4.5",
-        gambar: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=300&q=80",
+        gambar: "/fto4.jpeg",
     },
 ];
 
