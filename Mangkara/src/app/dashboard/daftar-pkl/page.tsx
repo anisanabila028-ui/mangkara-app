@@ -26,7 +26,7 @@ const dataTempat = [
         lokasi: "Cimahi",
         kuota: "3",
         rating: "4.4",
-        gambar: "/fto2.jpeg",
+        gambar: "/fto3.jpeg",
     },
     {
         id: "3",
@@ -34,7 +34,7 @@ const dataTempat = [
         lokasi: "Jakarta",
         kuota: "2",
         rating: "4.3",
-        gambar: "/fto3.jpeg",
+        gambar: "/fto2.jpeg",
     },
     {
         id: "4",
