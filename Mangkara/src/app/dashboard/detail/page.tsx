@@ -7,7 +7,7 @@ import {
     Clock,
     Building2,
 } from "lucide-react";
-import BottomOrnament from "../../../components/ui/bottomOrnament";
+import BottomOrnament from "../../../components/ui/bottomOrnament"
 
 const perusahaan = {
     nama: "PT Digital Indonesia",

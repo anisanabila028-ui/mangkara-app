@@ -1,11 +1,3 @@
-/* ============================================================
-   ORNAMEN BAWAH - memakai 3 aset batik dari folder /public
-   kiri : logokiri-removebg.png
-   tengah: logotengah-removebg.png
-   kanan : logokanan-removebg.png
-   (dipakai bersama oleh halaman Beranda & Rekomendasi)
-============================================================ */
-
 export function BottomOrnament({ className = "" }: { className?: string }) {
   return (
     <div
