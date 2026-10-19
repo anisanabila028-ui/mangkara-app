@@ -1,20 +1,19 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Check } from "lucide-react";
-import BottomOrnament from "../../../components/ui/bottomOrnament";
-import { Clock3, FileCheck2 } from "lucide-react";
+import { Check, Clock3 } from "lucide-react";
 
 export default function BerhasilPage() {
     const router = useRouter();
 
     return (
-        <div className="min-h-screen bg-[#f0f6ff] flex flex-col items-center justify-between py-6 px-4">
-            <div className="w-full max-w-[440px] bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col justify-between p-5 space-y-5">
+        <div className="min-h-screen bg-[#f0f6ff] flex flex-col items-center justify-center py-4 px-4">
+            {/* KONTAINER UTAMA (TANPA CARD PEMBUNGKUS BESAR) */}
+            <div className="w-full max-w-[440px] flex flex-col space-y-5">
 
-                {/* HEADER BANNER */}
-                <div className="bg-[#f0f6ff] rounded-xl py-4 px-4 text-center">
-                    <h1 className="text-xl font-bold text-gray-900">
+                {/* JUDUL */}
+                <div>
+                    <h1 className="text-[17px] font-bold text-black mb-1 ml-1 text-center sm:text-left">
                         Pengajuan PKL
                     </h1>
                 </div>
@@ -29,7 +28,7 @@ export default function BerhasilPage() {
                 </div>
 
                 {/* STATUS CARD 1: SEDANG DIPROSES */}
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm flex items-start gap-3.5">
+                <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm flex items-start gap-3.5">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1976ff] text-white">
                         <Clock3 size={20} strokeWidth={2.5} />
                     </div>
@@ -39,13 +38,13 @@ export default function BerhasilPage() {
                             Sedang di proses oleh Admin
                         </h2>
                         <p className="mt-1 text-xs text-gray-600 leading-relaxed">
-                            Pengajuan PKL kamu sudah terkirim melalui Google From dan sedang dalam tahap pemeriksaan oleh admin.
+                            Pengajuan PKL kamu sudah terkirim melalui Google Form dan sedang dalam tahap pemeriksaan oleh admin.
                         </p>
                     </div>
                 </div>
 
                 {/* STATUS CARD 2: YANG AKAN DILAKUKAN */}
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm flex items-start gap-3.5">
+                <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm flex items-start gap-3.5">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#1976ff] text-white">
                         <Check size={20} strokeWidth={2.5} />
                     </div>
