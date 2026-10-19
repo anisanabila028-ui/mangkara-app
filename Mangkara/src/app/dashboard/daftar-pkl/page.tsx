@@ -10,7 +10,6 @@ import {
     ChevronRight,
     Building2,
 } from "lucide-react";
-import BottomOrnament from "../../../components/ui/bottomOrnament";
 
 const dataTempat = [
     {
@@ -271,7 +270,7 @@ export default function DaftarPKLPage() {
             </main>
 
             {/* ---------- ORNAMEN BAWAH ---------- */}
-            <BottomOrnament />
+
         </div>
     );
 }

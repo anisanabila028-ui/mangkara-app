@@ -3,13 +3,13 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { 
-  Home, 
-  Building2, 
-  ThumbsUp, 
-  Search, 
-  MessageSquare, 
-  User, 
+import {
+  Home,
+  Building2,
+  ThumbsUp,
+  Search,
+  MessageSquare,
+  User,
   HelpCircle,
   X
 } from "lucide-react";
@@ -21,7 +21,7 @@ interface SidebarProps {
 
 export default function Sidebar({
   isOpen = true,
-  onClose = () => {},
+  onClose = () => { },
 }: SidebarProps) {
   const pathname = usePathname();
 
@@ -90,11 +90,10 @@ export default function Sidebar({
                   key={index}
                   href={item.href}
                   aria-current={isActive ? "page" : undefined}
-                  className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-semibold transition ${
-                    isActive
+                  className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-semibold transition ${isActive
                       ? "bg-sky-100 text-sky-600"
                       : "text-slate-600 hover:bg-sky-50 hover:text-sky-600"
-                  }`}
+                    }`}
                 >
                   <Icon size={18} />
                   <span>{item.label}</span>

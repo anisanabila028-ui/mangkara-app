@@ -1,7 +1,6 @@
 "use client";
 
 import { ExternalLink, Info } from "lucide-react";
-import BottomOrnament from "../../../components/ui/bottomOrnament";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -26,22 +25,22 @@ export default function AjukanPKLPage() {
                 </div>
 
                 {/* ALERT INFORMASI */}
-                <div className="flex items-start gap-3 rounded-2xl border border-blue-200 bg-blue-50/80 p-3.5 shadow-sm">
+                <div className="flex items-start gap-3 rounded-lg border border-blue-600 bg-blue-100 p-3.5 shadow-sm">
                     <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-500 text-white">
                         <Info size={16} />
                     </div>
                     <div>
-                        <p className="text-xs sm:text-sm font-bold text-blue-600">
-                            Informasi ini akan langsung
+                        <p className="text-xs sm:text-sm  text-blue-600">
+                            Informasi ini akan langsung dikirim ke pihak perusahaan
                         </p>
-                        <p className="mt-0.5 text-xs text-gray-600 leading-relaxed">
+                        <p className="mt-0.5 text-xs text-black leading-relaxed">
                             Data dan dokumen pengajuan akan diisi melalui formulir Google From
                         </p>
                     </div>
                 </div>
 
                 {/* CARD DATA DIRI */}
-                <div className="rounded-2xl border border-blue-300 bg-white p-4 sm:p-6 shadow-sm space-y-3.5">
+                <div className="rounded-2xl border border-blue-100 bg-white p-4 sm:p-6 shadow-sm space-y-3.5">
                     <h2 className="text-base font-bold text-gray-900">
                         Data Diri
                     </h2>
@@ -84,22 +83,24 @@ export default function AjukanPKLPage() {
                             </a>
                         </div>
                     </div>
+                    {/* PERHATIAN */}
+                    <div className="rounded-2xl border border-blue-200 bg-blue-50/60 p-3.5 space-y-1">
+                        <p className="text-xs font-bold text-gray-900">
+                            Perhatian
+                        </p>
+                        <p className="text-xs text-gray-600 leading-relaxed">
+                            Pastikan semua data yang kamu masukkan sudah benar dan dokumen yang diunggah sesuai dengan persyaratan sebelum mengirim formulir
+                        </p>
+                    </div>
+
                 </div>
 
-                {/* PERHATIAN */}
-                <div className="rounded-2xl border border-blue-200 bg-blue-50/60 p-3.5 space-y-1">
-                    <p className="text-xs font-bold text-gray-900">
-                        Perhatian
-                    </p>
-                    <p className="text-xs text-gray-600 leading-relaxed">
-                        Pastikan semua data yang kamu masukkan sudah benar dan dokumen yang diunggah sesuai dengan persyaratan sebelum mengirim formulir
-                    </p>
-                </div>
+
 
             </main>
 
             {/* ---------- ORNAMEN BAWAH ---------- */}
-            <BottomOrnament />
+
         </div>
     );
 }
