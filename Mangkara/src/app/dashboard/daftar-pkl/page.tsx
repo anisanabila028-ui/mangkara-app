@@ -19,7 +19,7 @@ const dataTempat = [
         lokasi: "Bandung",
         kuota: "5",
         rating: "4.6",
-        gambar: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=300&q=80",
+        gambar: "/fto1.jpeg",
     },
     {
         id: "2",
@@ -27,7 +27,7 @@ const dataTempat = [
         lokasi: "Cimahi",
         kuota: "3",
         rating: "4.4",
-        gambar: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=300&q=80",
+        gambar: "/fto3.jpeg",
     },
     {
         id: "3",
@@ -35,7 +35,7 @@ const dataTempat = [
         lokasi: "Jakarta",
         kuota: "2",
         rating: "4.3",
-        gambar: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=300&q=80",
+        gambar: "/fto2.jpeg",
     },
     {
         id: "4",
@@ -43,7 +43,7 @@ const dataTempat = [
         lokasi: "Bandung",
         kuota: "4",
         rating: "4.5",
-        gambar: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=300&q=80",
+        gambar: "/fto4.jpeg",
     },
 ];
 
@@ -180,11 +180,10 @@ export default function DaftarPKLPage() {
                     <button
                         type="button"
                         onClick={() => goToPage(1)}
-                        className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold transition ${
-                            currentPage === 1
+                        className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold transition ${currentPage === 1
                                 ? "bg-[#1976ff] text-white shadow-sm"
                                 : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
-                        }`}
+                            }`}
                     >
                         1
                     </button>
@@ -193,11 +192,10 @@ export default function DaftarPKLPage() {
                     <button
                         type="button"
                         onClick={() => goToPage(2)}
-                        className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-medium transition ${
-                            currentPage === 2
+                        className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-medium transition ${currentPage === 2
                                 ? "bg-[#1976ff] text-white shadow-sm"
                                 : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
-                        }`}
+                            }`}
                     >
                         2
                     </button>
@@ -206,11 +204,10 @@ export default function DaftarPKLPage() {
                     <button
                         type="button"
                         onClick={() => goToPage(3)}
-                        className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-medium transition ${
-                            currentPage === 3
+                        className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-medium transition ${currentPage === 3
                                 ? "bg-[#1976ff] text-white shadow-sm"
                                 : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
-                        }`}
+                            }`}
                     >
                         3
                     </button>
@@ -222,11 +219,10 @@ export default function DaftarPKLPage() {
                     <button
                         type="button"
                         onClick={() => goToPage(5)}
-                        className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-medium transition ${
-                            currentPage === 5
+                        className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-medium transition ${currentPage === 5
                                 ? "bg-[#1976ff] text-white shadow-sm"
                                 : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
-                        }`}
+                            }`}
                     >
                         5
                     </button>

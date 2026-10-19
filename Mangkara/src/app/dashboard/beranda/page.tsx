@@ -13,7 +13,7 @@ export default function BerandaPage() {
       loc: "Bandung",
       rating: 4.6,
       quota: 5,
-      img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=300&q=80",
+      img: "/fto5.jpeg"    ,
     },
     {
       id: "2",
@@ -21,7 +21,7 @@ export default function BerandaPage() {
       loc: "Cimahi",
       rating: 4.4,
       quota: 3,
-      img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=300&q=80",
+      img: "/fto3.jpeg",
     },
     {
       id: "3",
@@ -29,7 +29,7 @@ export default function BerandaPage() {
       loc: "Jakarta",
       rating: 4.3,
       quota: 2,
-      img: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=300&q=80",
+      img: "/fto2.jpeg",
     },
   ];
 

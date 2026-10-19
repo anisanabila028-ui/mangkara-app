@@ -23,10 +23,7 @@ export default function Topbar({ onMenuClick }: TopbarProps) {
             <Menu size={24} className="hidden sm:block" />
           </button>
 
-          {/* TAGLINE */}
-          <span className="hidden text-sm text-[#334155] md:block">
-            Manggihan arah ngali gawe kanggo anak remaja
-          </span>
+
         </div>
 
         {/* SISI KANAN: Notifikasi dan Profil */}
