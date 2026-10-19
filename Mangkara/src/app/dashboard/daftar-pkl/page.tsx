@@ -51,10 +51,7 @@ export default function DaftarPKLPage() {
     const router = useRouter();
 
     const [currentPage, setCurrentPage] = useState(1);
-
-    const itemsPerPage = 4;
-    const totalPages = 5; // disesuaikan agar pagination 1, 2, 3 ... 5 tampil persis Gambar 5
-
+    const totalPages = 5;
     const currentData = dataTempat;
 
     const goToPage = (page: number) => {
@@ -69,7 +66,7 @@ export default function DaftarPKLPage() {
             <main className="w-full max-w-2xl mx-auto px-4 py-5 sm:px-6">
 
                 {/* HEADER HALAMAN */}
-                <div className="mb-5 flex flex-col gap-3">
+                <div className="mb-4 flex flex-col gap-2.5">
                     <div className="min-w-0">
                         <h1 className="text-xl font-bold leading-tight text-gray-900 sm:text-2xl">
                             Daftar Tempat PKL
@@ -97,29 +94,62 @@ export default function DaftarPKLPage() {
                     {currentData.map((item) => (
                         <div
                             key={item.id}
-                            className="w-full rounded-2xl border border-gray-200/80 bg-white p-3.5 shadow-sm transition hover:shadow-md space-y-3"
+                            className="w-full rounded-2xl border border-gray-200/80 bg-white p-3.5 shadow-sm transition hover:shadow-md flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
                         >
-                            {/* BAGIAN ATAS: GAMBAR + NAMA & META */}
-                            <div className="flex items-center gap-3.5">
-                                {/* Thumbnail Foto */}
-                                <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-xl bg-slate-100">
-                                    <Building2
-                                        size={22}
-                                        className="absolute inset-0 m-auto text-slate-300"
-                                    />
-                                    <img
-                                        src={item.gambar}
-                                        alt={item.nama}
-                                        loading="lazy"
-                                        className="absolute inset-0 h-full w-full object-cover"
-                                        onError={(e) => {
-                                            e.currentTarget.style.display = "none";
-                                        }}
-                                    />
+                            {/* BAGIAN ATAS (MOBILE) / KIRI (DESKTOP): GAMBAR + NAMA & META */}
+                            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3.5 min-w-0 flex-1">
+                                <div className="flex items-center gap-3.5 min-w-0 w-full sm:w-auto">
+                                    {/* Thumbnail Foto */}
+                                    <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-xl bg-slate-100">
+                                        <Building2
+                                            size={22}
+                                            className="absolute inset-0 m-auto text-slate-300"
+                                        />
+                                        <img
+                                            src={item.gambar}
+                                            alt={item.nama}
+                                            loading="lazy"
+                                            className="absolute inset-0 h-full w-full object-cover"
+                                            onError={(e) => {
+                                                e.currentTarget.style.display = "none";
+                                            }}
+                                        />
+                                    </div>
+
+                                    {/* Informasi (Khusus Mobile tampil di sebelah gambar) */}
+                                    <div className="min-w-0 flex-1 sm:hidden">
+                                        <h2 className="truncate text-sm font-bold text-gray-900">
+                                            {item.nama}
+                                        </h2>
+
+                                        <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500">
+                                            {/* Lokasi */}
+                                            <span className="flex items-center gap-1">
+                                                <MapPin size={12} className="text-gray-400" />
+                                                {item.lokasi}
+                                            </span>
+
+                                            {/* Kuota */}
+                                            <span>
+                                                Sisa Kuota:{" "}
+                                                <b className="text-blue-600 font-semibold">{item.kuota}</b>
+                                            </span>
+
+                                            {/* Rating */}
+                                            <span className="flex items-center gap-1 font-semibold text-[#f5a400]">
+                                                <Star
+                                                    size={12}
+                                                    fill="currentColor"
+                                                    className="shrink-0"
+                                                />
+                                                {item.rating}
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                {/* Informasi */}
-                                <div className="min-w-0 flex-1">
+                                {/* Informasi (Khusus Desktop) */}
+                                <div className="hidden sm:block min-w-0 flex-1">
                                     <h2 className="truncate text-sm font-bold text-gray-900">
                                         {item.nama}
                                     </h2>
@@ -150,8 +180,8 @@ export default function DaftarPKLPage() {
                                 </div>
                             </div>
 
-                            {/* BAGIAN BAWAH: TOMBOL KUNING LIHAT DETAIL */}
-                            <div>
+                            {/* BAGIAN TOMBOL: DI BAWAH (SEJAJAR GAMBAR SEBELAH KIRI) PADA MOBILE & DI SAMPING PADA DESKTOP */}
+                            <div className="flex sm:justify-start shrink-0 pl-0 sm:pl-0">
                                 <button
                                     type="button"
                                     onClick={() => router.push(`/dashboard/detail/${item.id}`)}
@@ -164,8 +194,8 @@ export default function DaftarPKLPage() {
                     ))}
                 </div>
 
-                {/* PAGINATION PERSIS GAMBAR 5: < 1 2 3 ... 5 > */}
-                <div className="mt-7 flex items-center justify-center gap-2">
+                {/* PAGINATION */}
+                <div className="mt-6 flex items-center justify-center gap-2">
                     {/* PREVIOUS */}
                     <button
                         type="button"
@@ -180,11 +210,10 @@ export default function DaftarPKLPage() {
                     <button
                         type="button"
                         onClick={() => goToPage(1)}
-                        className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold transition ${
-                            currentPage === 1
-                                ? "bg-[#1976ff] text-white shadow-sm"
-                                : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
-                        }`}
+                        className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold transition ${currentPage === 1
+                            ? "bg-[#1976ff] text-white shadow-sm"
+                            : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                            }`}
                     >
                         1
                     </button>
@@ -193,11 +222,10 @@ export default function DaftarPKLPage() {
                     <button
                         type="button"
                         onClick={() => goToPage(2)}
-                        className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-medium transition ${
-                            currentPage === 2
-                                ? "bg-[#1976ff] text-white shadow-sm"
-                                : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
-                        }`}
+                        className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-medium transition ${currentPage === 2
+                            ? "bg-[#1976ff] text-white shadow-sm"
+                            : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                            }`}
                     >
                         2
                     </button>
@@ -206,11 +234,10 @@ export default function DaftarPKLPage() {
                     <button
                         type="button"
                         onClick={() => goToPage(3)}
-                        className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-medium transition ${
-                            currentPage === 3
-                                ? "bg-[#1976ff] text-white shadow-sm"
-                                : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
-                        }`}
+                        className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-medium transition ${currentPage === 3
+                            ? "bg-[#1976ff] text-white shadow-sm"
+                            : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                            }`}
                     >
                         3
                     </button>
@@ -222,11 +249,10 @@ export default function DaftarPKLPage() {
                     <button
                         type="button"
                         onClick={() => goToPage(5)}
-                        className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-medium transition ${
-                            currentPage === 5
-                                ? "bg-[#1976ff] text-white shadow-sm"
-                                : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
-                        }`}
+                        className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-medium transition ${currentPage === 5
+                            ? "bg-[#1976ff] text-white shadow-sm"
+                            : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                            }`}
                     >
                         5
                     </button>
