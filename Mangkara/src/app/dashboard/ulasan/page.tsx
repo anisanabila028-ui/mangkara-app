@@ -1,16 +1,19 @@
 "use client";
 
+import { useState } from "react";
 import { Search, FileText, Star } from "lucide-react";
+import BottomOrnament from "../../../components/ui/bottomOrnament";
 
-const ulasan = [
+const ulasanData = [
     {
-        nama: "zebran Ramadhani",
+        nama: "zebran",
         aksi: "merekomendasikan",
         perusahaan: "PT Digital Indonesia",
-        waktu: "2 jam lalu",
+        waktu: "5 jam lalu",
         tanggal: "12 Apr 2025",
         rating: 5,
-        avatar: "👨🏻",
+        avatarBg: "bg-fuchsia-100",
+        avatarImg: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&q=80",
     },
     {
         nama: "Rizky Pratama",
@@ -18,238 +21,138 @@ const ulasan = [
         perusahaan: "CV Kreatif Nusantara",
         waktu: "5 jam lalu",
         tanggal: "10 Apr 2025",
-        rating: 4,
-        avatar: "👨🏻‍🦱",
+        rating: 3,
+        avatarBg: "bg-purple-100",
+        avatarImg: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&q=80",
     },
     {
-        nama: "Ismail payudi",
+        nama: "Ismai",
         aksi: "memberi ulasan untuk",
         perusahaan: "Telkom Indonesia",
         waktu: "1 hari lalu",
         tanggal: "8 Apr 2025",
-        rating: 3,
-        avatar: "👨🏻",
+        rating: 4,
+        avatarBg: "bg-cyan-100",
+        avatarImg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80",
     },
 ];
 
 export default function UlasanPage() {
+    const [searchQuery, setSearchQuery] = useState("PT Digital Indonesia");
+
     return (
-        <main className="relative min-h-[calc(100vh-70px)] overflow-hidden bg-[#eef6ff] px-5 py-8 md:px-7 lg:px-8">
-            {/* =========================
-          HEADER
-      ========================= */}
-            <div className="mb-5">
-                <h1 className="text-[18px] font-bold text-[#263238]">
-                    Ulasan
-                </h1>
+        <div className="min-h-screen bg-[#f0f6ff] flex flex-col justify-between relative pb-28 sm:pb-36 px-4 py-5 sm:px-6">
+            <main className="w-full max-w-2xl mx-auto space-y-4">
 
-                <p className="mt-1 text-[10px] text-[#78909c]">
-                    Ulasan dan kelola dari pengguna tentang pkl.
-                </p>
-            </div>
-
-            {/* =========================
-          TOTAL + SEARCH
-      ========================= */}
-            <div className="mb-10 flex flex-col gap-3 md:flex-row md:items-center">
-                {/* TOTAL ULASAN */}
-                <div className="flex h-[66px] w-full max-w-[165px] items-center rounded-lg border border-[#e0e5eb] bg-white px-3 shadow-sm">
-                    <div className="mr-3 flex h-9 w-9 items-center justify-center rounded-lg bg-[#e7f0ff]">
-                        <FileText
-                            size={18}
-                            className="text-[#1976ff]"
-                            strokeWidth={2}
-                        />
-                    </div>
-
-                    <div>
-                        <p className="text-[11px] font-bold text-[#607080]">
-                            Total Ulasan
-                        </p>
-
-                        <p className="mt-1 text-[21px] leading-none text-[#222]">
-                            48
-                        </p>
-                    </div>
-                </div>
-
-                {/* SEARCH */}
-                <div className="relative w-full md:max-w-[540px]">
-                    <Search
-                        size={15}
-                        className="absolute left-3 top-1/2 -translate-y-1/2 text-[#78909c]"
-                    />
-
+                {/* SEARCH BAR */}
+                <div className="relative">
+                    <Search className="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
                         type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="PT Digital Indonesia"
-                        className="h-[34px] w-full rounded-md border border-[#dfe5eb] bg-white pl-9 pr-3 text-[10px] text-[#455a64] outline-none transition focus:border-[#1976ff]"
+                        className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-white text-xs sm:text-sm text-gray-800 focus:outline-none focus:border-blue-500 shadow-sm"
                     />
                 </div>
-            </div>
 
-            {/* =========================
-          KONTRIBUSI TERBARU
-      ========================= */}
-            <div className="mb-3 flex items-center justify-between">
-                <h2 className="text-[12px] font-bold text-[#263238]">
-                    Kontribusi Terbaru
-                </h2>
+                {/* HEADER */}
+                <div>
+                    <h1 className="text-xl font-bold text-gray-900 sm:text-2xl leading-snug">
+                        Ulasan
+                    </h1>
+                    <p className="mt-0.5 text-xs text-gray-500 leading-relaxed">
+                        Ulasan dan kelola dari pengguna tentang pkl.
+                    </p>
+                </div>
 
-                <button className="text-[9px] font-medium text-[#1976ff] hover:underline">
-                    Lihat Semua →
-                </button>
-            </div>
-
-            {/* =========================
-          LIST ULASAN
-      ========================= */}
-            <div className="relative z-10 space-y-3">
-                {ulasan.map((item, index) => (
-                    <div
-                        key={index}
-                        className="flex min-h-[42px] items-center justify-between rounded-md border border-[#edf0f3] bg-white px-3 py-2 shadow-sm"
-                    >
-                        {/* LEFT */}
-                        <div className="flex min-w-0 items-center gap-2.5">
-                            {/* AVATAR */}
-                            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#ffe8f1] text-[14px]">
-                                {item.avatar}
-                            </div>
-
-                            {/* INFO */}
-                            <div className="min-w-0">
-                                <p className="truncate text-[9px] text-[#607080]">
-                                    <span className="font-bold text-[#263238]">
-                                        {item.nama}
-                                    </span>{" "}
-                                    {item.aksi}{" "}
-                                    <span className="font-bold text-[#263238]">
-                                        {item.perusahaan}
-                                    </span>
-                                </p>
-
-                                <p className="mt-0.5 text-[7px] text-[#90a4ae]">
-                                    {item.waktu}
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* RIGHT */}
-                        <div className="ml-3 flex shrink-0 items-center gap-5">
-                            <span className="hidden text-[8px] text-[#607080] sm:block">
-                                {item.tanggal}
-                            </span>
-
-                            <div className="flex items-center gap-1.5">
-                                {[1, 2, 3, 4, 5].map((star) => (
-                                    <Star
-                                        key={star}
-                                        size={14}
-                                        strokeWidth={1.5}
-                                        className={
-                                            star <= item.rating
-                                                ? "text-[#ffd000]"
-                                                : "text-[#d4d8dc]"
-                                        }
-                                        fill={
-                                            star <= item.rating
-                                                ? "#ffd000"
-                                                : "transparent"
-                                        }
-                                    />
-                                ))}
-                            </div>
-                        </div>
+                {/* TOTAL ULASAN CARD */}
+                <div className="bg-white rounded-2xl border border-gray-200/80 p-3.5 shadow-sm inline-flex items-center gap-3 w-fit pr-10">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
+                        <FileText size={18} />
                     </div>
-                ))}
-            </div>
+                    <div>
+                        <p className="text-base font-bold text-gray-900 leading-none">
+                            48
+                        </p>
+                        <p className="text-[11px] text-gray-500 mt-1">
+                            Total Ulasan
+                        </p>
+                    </div>
+                </div>
 
-            {/* =========================
-          ORNAMEN BAWAH
-      ========================= */}
-            <BottomDecoration />
-        </main>
-    );
-}
+                {/* SECTION KONTRIBUSI TERBARU */}
+                <div className="pt-2">
+                    <div className="flex items-center justify-between mb-3">
+                        <h2 className="text-sm font-bold text-gray-900">
+                            Kontribusi Terbaru
+                        </h2>
+                        <button className="text-xs text-blue-600 font-semibold hover:underline">
+                            Lihat Semua →
+                        </button>
+                    </div>
 
-/* =========================
-   ORNAMEN
-========================= */
+                    {/* LIST ULASAN */}
+                    <div className="space-y-3">
+                        {ulasanData.map((item, index) => (
+                            <div
+                                key={index}
+                                className="rounded-2xl border border-gray-200/80 bg-white p-3.5 shadow-sm"
+                            >
+                                <div className="flex items-start gap-3">
+                                    {/* Avatar */}
+                                    <div className={`relative h-11 w-11 shrink-0 overflow-hidden rounded-full ${item.avatarBg}`}>
+                                        <img
+                                            src={item.avatarImg}
+                                            alt={item.nama}
+                                            className="h-full w-full object-cover"
+                                        />
+                                    </div>
 
-function BottomDecoration() {
-    return (
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-[95px] overflow-hidden">
-            {/* LEFT */}
-            <svg
-                className="absolute bottom-0 left-0 h-[90px] w-[190px]"
-                viewBox="0 0 190 90"
-                fill="none"
-            >
-                <path
-                    d="M0 73C22 63 31 82 48 69C63 58 75 74 91 63C107 52 120 71 137 61C153 51 171 63 190 53"
-                    stroke="#69a9ef"
-                    strokeWidth="3"
-                />
+                                    {/* Content */}
+                                    <div className="min-w-0 flex-1">
+                                        <div className="flex items-center justify-between gap-2">
+                                            <p className="text-xs text-gray-600">
+                                                <b className="text-gray-900 font-bold">{item.nama}</b> {item.aksi}
+                                            </p>
+                                            <span className="text-[10px] text-gray-400 shrink-0">
+                                                {item.tanggal}
+                                            </span>
+                                        </div>
 
-                <path
-                    d="M0 83C25 72 35 88 53 77C69 67 82 83 99 72C116 62 130 80 146 70C162 61 177 72 190 65"
-                    stroke="#69a9ef"
-                    strokeWidth="2"
-                />
+                                        <p className="text-xs font-bold text-gray-900 mt-0.5">
+                                            {item.perusahaan}
+                                        </p>
 
-                <circle cx="53" cy="70" r="4" fill="#69a9ef" />
-                <circle cx="78" cy="75" r="3" fill="#f5c43b" />
-                <circle cx="105" cy="63" r="3" fill="#69a9ef" />
-            </svg>
+                                        <p className="text-[11px] text-gray-400 mt-0.5">
+                                            {item.waktu}
+                                        </p>
 
-            {/* CENTER */}
-            <svg
-                className="absolute bottom-0 left-1/2 h-[70px] w-[190px] -translate-x-1/2"
-                viewBox="0 0 190 70"
-                fill="none"
-            >
-                <path
-                    d="M0 47C22 36 37 57 55 45C71 34 82 50 96 41C112 31 126 49 142 40C159 31 172 43 190 35"
-                    stroke="#69a9ef"
-                    strokeWidth="3"
-                />
+                                        {/* Stars Rating */}
+                                        <div className="flex items-center gap-1 mt-2">
+                                            {[1, 2, 3, 4, 5].map((star) => (
+                                                <Star
+                                                    key={star}
+                                                    size={13}
+                                                    className={
+                                                        star <= item.rating
+                                                            ? "fill-[#ffd000] text-[#ffd000]"
+                                                            : "fill-[#e2e8f0] text-[#e2e8f0]"
+                                                    }
+                                                />
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
 
-                <path
-                    d="M95 50C83 43 82 34 88 30C92 28 95 34 95 38C96 32 100 27 104 30C109 35 106 45 95 50Z"
-                    fill="#69a9ef"
-                />
+            </main>
 
-                <circle cx="95" cy="47" r="4" fill="#f5c43b" />
-                <circle cx="65" cy="42" r="3" fill="#f5c43b" />
-                <circle cx="124" cy="38" r="3" fill="#f5c43b" />
-            </svg>
-
-            {/* RIGHT */}
-            <svg
-                className="absolute bottom-0 right-0 h-[95px] w-[200px]"
-                viewBox="0 0 200 95"
-                fill="none"
-            >
-                <path
-                    d="M0 66C23 55 34 76 51 63C68 51 79 70 95 58C112 47 127 66 143 55C161 44 178 57 200 45"
-                    stroke="#69a9ef"
-                    strokeWidth="3"
-                />
-
-                <path
-                    d="M20 88C31 73 39 62 51 62C43 52 46 43 52 40C59 45 61 54 56 61C66 52 73 54 76 59C71 68 61 72 53 69C44 79 32 86 20 88Z"
-                    fill="#72acf0"
-                />
-
-                <path
-                    d="M151 92C157 76 168 65 181 65C173 55 177 46 184 44C191 50 191 60 186 66C195 60 201 64 197 73C190 80 181 82 173 79C166 87 159 91 151 92Z"
-                    fill="#72acf0"
-                />
-
-                <circle cx="92" cy="63" r="4" fill="#69a9ef" />
-                <circle cx="114" cy="55" r="3" fill="#f5c43b" />
-            </svg>
+            {/* ---------- ORNAMEN BAWAH ---------- */}
+            <BottomOrnament />
         </div>
     );
 }

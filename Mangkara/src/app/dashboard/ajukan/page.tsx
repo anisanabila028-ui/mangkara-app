@@ -1,153 +1,105 @@
 "use client";
 
+import { ExternalLink, Info } from "lucide-react";
+import BottomOrnament from "../../../components/ui/bottomOrnament";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ExternalLink, Info, CheckCircle2 } from "lucide-react";
 
 const GOOGLE_FORM_URL = "https://forms.gle/JS3EsbnTcPmKzMfF6";
 
 export default function AjukanPKLPage() {
     const router = useRouter();
-
-    // Jadi true setelah tombol "Isi Formulir" diklik (form terbuka di tab baru)
     const [formDibuka, setFormDibuka] = useState(false);
 
     return (
-        <div className="min-h-screen bg-[#f4f8ff]">
-
-            <main className="min-h-screen bg-[#dcecff] px-4 py-5 sm:px-6 lg:px-10 lg:py-7">
+        <div className="min-h-screen bg-[#f0f6ff] flex flex-col justify-between relative pb-28 sm:pb-36 px-4 py-5 sm:px-6">
+            <main className="w-full max-w-2xl mx-auto space-y-4">
 
                 {/* JUDUL */}
-                <div className="mb-5">
-                    <h1 className="text-xl font-bold text-[#263238] sm:text-2xl">
+                <div>
+                    <h1 className="text-xl font-bold text-gray-900 sm:text-2xl leading-snug">
                         Ajukan PKL di PT Digital Indonesia
                     </h1>
-
-                    <p className="mt-1 text-sm text-gray-600">
-                        Lengkapi data dan persyaratan yang dibutuhkan oleh perusahaan.
+                    <p className="mt-1 text-xs text-gray-500 leading-relaxed">
+                        Lengkapi data dan persyaratan yang di butuhkan oleh perusahaan.
                     </p>
                 </div>
 
-
-                {/* INFORMASI */}
-                <div className="mb-5 flex items-start gap-3 rounded-md border border-[#69a8ff] bg-[#e5f1ff] px-4 py-3">
-
-                    <Info
-                        size={20}
-                        className="mt-0.5 shrink-0 text-[#1478df]"
-                    />
-
+                {/* ALERT INFORMASI */}
+                <div className="flex items-start gap-3 rounded-2xl border border-blue-200 bg-blue-50/80 p-3.5 shadow-sm">
+                    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-500 text-white">
+                        <Info size={16} />
+                    </div>
                     <div>
-                        <p className="text-sm font-semibold text-[#1478df]">
-                            Informasi pengajuan PKL
+                        <p className="text-xs sm:text-sm font-bold text-blue-600">
+                            Informasi ini akan langsung
                         </p>
-
-                        <p className="mt-1 text-xs text-gray-600">
-                            Data dan dokumen pengajuan akan diisi melalui formulir Google Form.
+                        <p className="mt-0.5 text-xs text-gray-600 leading-relaxed">
+                            Data dan dokumen pengajuan akan diisi melalui formulir Google From
                         </p>
                     </div>
-
                 </div>
 
-
-                {/* CARD */}
-                <div className="mx-auto w-full max-w-[900px] rounded-lg border border-[#5da2ff] bg-white p-5 shadow-sm sm:p-7">
-
-                    <h2 className="mb-2 text-lg font-bold text-[#263238]">
+                {/* CARD DATA DIRI */}
+                <div className="rounded-2xl border border-blue-300 bg-white p-4 sm:p-6 shadow-sm space-y-3.5">
+                    <h2 className="text-base font-bold text-gray-900">
                         Data Diri
                     </h2>
-
-                    <p className="mb-6 text-xs leading-5 text-gray-500">
-                        Silakan lengkapi data diri, informasi sekolah, jurusan,
-                        dan dokumen persyaratan melalui Google Form yang telah
-                        disediakan.
+                    <p className="text-xs text-gray-500 leading-relaxed">
+                        Silahkan lengkapi data diri, informasi sekolah, jurusan ,dan dokumen persyaratan melalui Google From yang telah disediakan.
                     </p>
 
-
-                    {/* GOOGLE FORM */}
-                    <div className="rounded-lg border border-[#b9d9ff] bg-[#f8fbff] p-5 text-center sm:p-8">
-
-                        {/* FOTO */}
-                        <div className="mx-auto mb-3 flex items-center justify-center">
+                    {/* DASHED BOX FORMULIR */}
+                    <div className="rounded-2xl border-2 border-dashed border-blue-300 bg-white p-5 text-center space-y-3">
+                        <div className="mx-auto flex justify-center">
                             <img
                                 src="/ajukan-pkl.png"
                                 alt="Formulir Pengajuan PKL"
-                                className="h-[140px] w-[140px] object-contain"
+                                className="h-32 w-32 object-contain"
                             />
                         </div>
 
-
-                        <h3 className="text-base font-bold text-[#263238]">
+                        <h3 className="text-sm font-bold text-blue-600">
                             Formulir Pengajuan PKL
                         </h3>
 
-
-                        <p className="mx-auto mt-2 max-w-[600px] text-xs leading-5 text-gray-500">
-                            Silakan isi formulir pengajuan PKL untuk melengkapi
-                            data diri, nomor WhatsApp, asal sekolah, jurusan,
-                            NISN, CV atau portofolio, surat pengantar PKL,
-                            dan pertanyaan tambahan dari perusahaan.
+                        <p className="text-xs text-gray-500 leading-relaxed max-w-md mx-auto">
+                            Silahkan Isi formulir pengajuan PKL untuk melengkapi data diri, nomor WhatsApp, asal sekolah,jurusan,NISN CV atau portopolio , surat pengantar PKL,dan pertanyaan tambahan dari perusahaan
                         </p>
 
-
-                        {/* LINK GOOGLE FORM */}
-                        <div className="mt-6 flex justify-center">
-
+                        <div className="pt-2">
                             <a
                                 href={GOOGLE_FORM_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                onClick={() => setFormDibuka(true)}
-                                className="flex w-full max-w-[300px] items-center justify-center gap-2 rounded-md bg-[#1478df] px-6 py-3 text-xs font-semibold text-white transition hover:bg-[#096bcf] sm:w-auto"
+                                onClick={() => {
+                                    setFormDibuka(true);
+                                    // Beri jeda lalu lanjut ke halaman berhasil jika diinginkan
+                                    setTimeout(() => router.push("/dashboard/berhasil"), 1500);
+                                }}
+                                className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-[#1976ff] hover:bg-[#1565c0] px-6 py-2.5 text-xs font-semibold text-white shadow-md shadow-blue-200 transition active:scale-[0.99]"
                             >
-                                <ExternalLink size={15} />
-
+                                <ExternalLink size={14} />
                                 Isi Formulir Pengajuan PKL
                             </a>
-
                         </div>
-
                     </div>
+                </div>
 
-
-                    {/* KONFIRMASI SETELAH FORM DIBUKA */}
-                    {formDibuka && (
-                        <div className="mt-5 flex flex-col gap-3 rounded-md border border-[#5da2ff] bg-[#e5f1ff] px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
-
-                            <div>
-                                <p className="text-sm font-semibold text-[#263238]">
-                                    Sudah mengirim formulirnya?
-                                </p>
-                                <p className="mt-1 text-xs text-gray-600">
-                                    Setelah muncul tulisan formulir terkirim di Google
-                                    Form, klik tombol di samping untuk melanjutkan.
-                                </p>
-                            </div>
-
-
-                        </div>
-                    )}
-
-
-                    {/* PERHATIAN */}
-                    <div className="mt-5 rounded-md border border-gray-200 bg-gray-50 px-4 py-3">
-
-                        <p className="text-xs font-semibold text-[#263238]">
-                            Perhatian
-                        </p>
-
-                        <p className="mt-1 text-[10px] leading-5 text-gray-500">
-                            Pastikan semua data yang kamu masukkan sudah benar
-                            dan dokumen yang diunggah sesuai dengan persyaratan
-                            sebelum mengirim formulir.
-                        </p>
-
-                    </div>
-
+                {/* PERHATIAN */}
+                <div className="rounded-2xl border border-blue-200 bg-blue-50/60 p-3.5 space-y-1">
+                    <p className="text-xs font-bold text-gray-900">
+                        Perhatian
+                    </p>
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                        Pastikan semua data yang kamu masukkan sudah benar dan dokumen yang diunggah sesuai dengan persyaratan sebelum mengirim formulir
+                    </p>
                 </div>
 
             </main>
 
+            {/* ---------- ORNAMEN BAWAH ---------- */}
+            <BottomOrnament />
         </div>
     );
 }

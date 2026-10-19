@@ -2,117 +2,189 @@
 
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { Search, MapPin, Star } from "lucide-react";
+import { Search, MapPin, Star, ChevronDown } from "lucide-react";
 import BottomOrnament from "../../../components/ui/bottomOrnament";
 
 export default function BerandaPage() {
   const rekomendasi = [
-    { id: "1", title: "PT Digital Indonesia", loc: "Bandung", rating: 4.6, quota: 5, img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400" },
-    { id: "2", title: "CV Kreatif Nusantara", loc: "Cimahi", rating: 4.4, quota: 3, img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400" },
-    { id: "3", title: "Telkom Indonesia", loc: "Jakarta", rating: 4.3, quota: 3, img: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=400" },
+    {
+      id: "1",
+      title: "PT Digital Indonesia",
+      loc: "Bandung",
+      rating: 4.6,
+      quota: 5,
+      img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=300&q=80",
+    },
+    {
+      id: "2",
+      title: "CV Kreatif Nusantara",
+      loc: "Cimahi",
+      rating: 4.4,
+      quota: 3,
+      img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=300&q=80",
+    },
+    {
+      id: "3",
+      title: "Telkom Indonesia",
+      loc: "Jakarta",
+      rating: 4.3,
+      quota: 2,
+      img: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=300&q=80",
+    },
   ];
 
   return (
-    <div className="flex flex-col justify-between min-h-[calc(100vh-5rem)] px-4 py-6 max-w-7xl mx-auto w-full">
-      <div>
+    <div className="min-h-screen bg-[#f0f6ff] flex flex-col justify-between relative pb-28 sm:pb-36 px-4 py-4 sm:px-6 md:px-8">
+      <div className="max-w-2xl mx-auto w-full space-y-4">
+
         {/* Banner Hero */}
-        <div className="bg-gradient-to-r from-blue-100 to-blue-50 rounded-2xl px-4 py-6 flex flex-col md:flex-row items-center justify-between mb-8 shadow-sm">
-          <div className="max-w-xl mb-6 md:mb-0">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-              Temukan Tempat PKL yang Tepat untukmu
-            </h1>
-            <p className="text-gray-500 text-xs mb-6">
-              Cari dan temukan tempat PKL sesuai jurusanmu dengan mudah dan cepat.
-            </p>
+        <div className="bg-[#f0f6ff] pt-2">
+          <h1 className="text-lg sm:text-2xl font-bold text-gray-900 leading-snug">
+            Temukan Tempat PKL yang Tepat untukmu
+          </h1>
+          <p className="text-xs text-gray-500 mt-1 mb-3.5 leading-relaxed">
+            Cari dan temukan tempat PKL sesuai jurusanmu dengan mudah dan cepat.
+          </p>
 
-            {/* Input Search */}
-            <div className="bg-white p-1.5 rounded-xl border border-gray-200 flex items-center shadow-sm mb-3">
-              <Search className="text-gray-400 ml-2 mr-2" size={16} />
-              <input
-                type="text"
-                placeholder="Cari tempat PKL, jurusan, atau perusahaan..."
-                className="w-full text-xs focus:outline-none"
-              />
-              <Link href="/dashboard/cari" className="bg-yellow-300 hover:bg-yellow-400 text-gray-800 font-semibold px-4 py-2 rounded-lg text-xs transition">
-                Cari
-              </Link>
-            </div>
+          {/* Search Box */}
+          <div className="bg-white p-1 rounded-xl border border-gray-200 flex items-center shadow-sm mb-3">
+            <Search className="text-gray-400 ml-2.5 mr-2 shrink-0" size={16} />
+            <input
+              type="text"
+              placeholder="Cari tempat PKL, jurusan, atau perusahaan..."
+              className="w-full text-xs text-gray-800 placeholder-gray-400 focus:outline-none py-1.5"
+            />
+            <Link
+              href="/dashboard/cari"
+              className="bg-[#fff082] hover:bg-[#ffe566] text-gray-800 font-semibold px-3.5 py-1.5 rounded-lg text-xs transition shrink-0 border border-[#fde047]"
+            >
+              Cari
+            </Link>
+          </div>
 
-            {/* Filters Dropdown */}
-            <div className="grid grid-cols-3 gap-2 text-xs">
-              <div>
-                <label className="text-[10px] text-gray-400 block mb-0.5">pilih jurusan</label>
-                <select className="w-full bg-white border border-gray-200 rounded-lg p-2 text-xs text-gray-600 focus:outline-none">
-                  <option>pilih jurusan anda</option>
+          {/* 3 Dropdown Filters */}
+          <div className="grid grid-cols-3 gap-2 text-xs mb-4">
+            <div>
+              <label className="text-[10px] text-gray-400 block mb-0.5 truncate">
+                pilih jurusan
+              </label>
+              <div className="relative">
+                <select className="w-full bg-white border border-gray-200 rounded-lg py-1.5 pl-2 pr-6 text-[11px] text-gray-600 appearance-none focus:outline-none">
+                  <option>pilih jurusan</option>
                   <option>RPL</option>
                   <option>TKJ</option>
                 </select>
+                <ChevronDown size={13} className="pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2 text-gray-400" />
               </div>
-              <div>
-                <label className="text-[10px] text-gray-400 block mb-0.5">pilih lokasi</label>
-                <select className="w-full bg-white border border-gray-200 rounded-lg p-2 text-xs text-gray-600 focus:outline-none">
+            </div>
+
+            <div>
+              <label className="text-[10px] text-gray-400 block mb-0.5 truncate">
+                pilih lokasi
+              </label>
+              <div className="relative">
+                <select className="w-full bg-white border border-gray-200 rounded-lg py-1.5 pl-2 pr-6 text-[11px] text-gray-600 appearance-none focus:outline-none">
                   <option>semua lokasi</option>
                   <option>Bandung</option>
                   <option>Jakarta</option>
                 </select>
+                <ChevronDown size={13} className="pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2 text-gray-400" />
               </div>
-              <div>
-                <label className="text-[10px] text-gray-400 block mb-0.5">jenis perusahaan</label>
-                <select className="w-full bg-white border border-gray-200 rounded-lg p-2 text-xs text-gray-600 focus:outline-none">
+            </div>
+
+            <div>
+              <label className="text-[10px] text-gray-400 block mb-0.5 truncate">
+                jenis perusahaan
+              </label>
+              <div className="relative">
+                <select className="w-full bg-white border border-gray-200 rounded-lg py-1.5 pl-2 pr-6 text-[11px] text-gray-600 appearance-none focus:outline-none">
                   <option>lihat jenis</option>
                   <option>IT / Software</option>
                 </select>
+                <ChevronDown size={13} className="pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2 text-gray-400" />
               </div>
             </div>
           </div>
 
-          {/* Banner Illustration */}
-          <div className="flex-shrink-0 rounded-2xl bg-blue-100 p-5">
-            <div className="relative h-[188px] w-[250px] md:h-[211px] md:w-[280px]">
-              <Image
-                src="/Hero Illustration.jpeg"
-                alt="Hero Illustration"
-                fill
-                sizes="(max-width: 768px) 250px, 280px"
-                className="object-contain"
-              />
-            </div>
+          {/* Ilustrasi Hero di tengah */}
+          <div className="flex justify-center items-center py-2">
+            <img
+              src="/Hero Illustration.jpeg"
+              alt="Ilustrasi Hero"
+              className="w-full max-w-[260px] h-auto object-contain"
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
+            />
           </div>
         </div>
 
-        {/* Section Rekomendasi */}
-        <div>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-sm font-bold text-gray-800">Rekomendasi Tempat PKL</h2>
-            <Link href="/dashboard/rekomendasi" className="text-xs text-blue-500 font-semibold hover:underline">
+        {/* Section Rekomendasi Tempat PKL */}
+        <div className="pt-2">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-sm font-bold text-gray-900">
+              Rekomendasi Tempat PKL
+            </h2>
+            <Link
+              href="/dashboard/rekomendasi"
+              className="text-xs text-blue-600 font-semibold hover:underline flex items-center gap-1"
+            >
               Lihat semua &rarr;
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Cards List */}
+          <div className="space-y-3">
             {rekomendasi.map((item) => (
               <Link
                 key={item.id}
-                href={`/dashboard/daftar-pkl/${item.id}`}
-                className="bg-white rounded-2xl p-3 border border-gray-100 hover:shadow-md transition group"
+                href={`/dashboard/detail/${item.id}`}
+                className="bg-white rounded-xl p-3 border border-gray-200/80 shadow-sm hover:shadow-md transition flex items-center gap-3.5 block"
               >
-                
-                <h3 className="font-bold text-xs text-gray-800 mb-1">{item.title}</h3>
-                <div className="flex items-center justify-between text-[11px] text-gray-500">
-                  <span className="flex items-center gap-1">
-                    <MapPin size={12} /> {item.loc}
-                  </span>
-                  <span className="flex items-center gap-1 text-yellow-500 font-semibold">
-                    <Star size={12} fill="currentColor" /> {item.rating}
-                  </span>
+                {/* Thumbnail Gambar */}
+                <div className="relative w-20 h-14 shrink-0 rounded-lg overflow-hidden bg-slate-100">
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                    }}
+                  />
                 </div>
-                <p className="text-[10px] text-gray-400 mt-2">Sisa Kuota: <span className="text-blue-600 font-semibold">{item.quota}</span></p>
+
+                {/* Info Text */}
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-bold text-sm text-gray-900 truncate">
+                    {item.title}
+                  </h3>
+
+                  <div className="flex items-center gap-3 text-xs text-gray-500 mt-1">
+                    <span className="flex items-center gap-1">
+                      <MapPin size={12} className="shrink-0 text-gray-400" />
+                      {item.loc}
+                    </span>
+
+                    <span>
+                      Sisa Kuota:{" "}
+                      <b className="text-blue-600 font-semibold">{item.quota}</b>
+                    </span>
+
+                    <span className="flex items-center gap-1 font-semibold text-[#f5a400]">
+                      <Star size={12} fill="currentColor" className="shrink-0" />
+                      {item.rating}
+                    </span>
+                  </div>
+                </div>
               </Link>
             ))}
           </div>
         </div>
+
       </div>
+
+      {/* ---------- ORNAMEN BAWAH ---------- */}
+      <BottomOrnament />
     </div>
   );
 }
