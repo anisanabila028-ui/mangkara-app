@@ -1,15 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { 
-  Bookmark, 
-  History, 
-  Settings, 
-  LogOut, 
-  ChevronRight, 
-  User 
-} from "lucide-react";
-import BottomOrnament from "../../../components/ui/bottomOrnament";
+import { useRouter } from "next/navigation";
+import { Bookmark, History, Settings, LogOut, ChevronRight, UserCircle2 } from "lucide-react";
+import { hapusToken } from "@/lib/api";
 
 const menuItems = [
   { label: "Tempat Tersimpan", href: "/dashboard/daftar-pkl", icon: Bookmark },
@@ -18,6 +13,14 @@ const menuItems = [
 ];
 
 export default function AkunPage() {
+  const router = useRouter();
+  const [konfirmasiKeluar, setKonfirmasiKeluar] = useState(false);
+
+  function keluar() {
+    hapusToken();
+    router.push("/masuk");
+  }
+
   return (
     <div className="min-h-screen bg-[#f0f6ff] flex flex-col justify-between relative pb-28 sm:pb-36 px-4 py-5 sm:px-6">
       <main className="w-full max-w-2xl mx-auto space-y-4">
@@ -83,9 +86,9 @@ export default function AkunPage() {
           </div>
         </div>
 
-        {/* MENU TINDAKAN */}
-        <div className="rounded-2xl border border-gray-200/80 bg-white p-4 shadow-sm space-y-4">
-          {menuItems.map(({ label, href, icon: Icon }) => (
+        {/* Menu */}
+        <div className="bg-white border border-slate-100 rounded-2xl p-2 shadow-sm self-start">
+          {menu.map(({ label, href, icon: Icon }) => (
             <Link
               key={label}
               href={href}
@@ -101,11 +104,8 @@ export default function AkunPage() {
 
           {/* Tombol Keluar */}
           <button
-            type="button"
-            onClick={() => {
-              window.location.href = "/";
-            }}
-            className="w-full flex items-center justify-between text-xs text-red-500 hover:text-red-600 transition pt-1"
+            onClick={() => setKonfirmasiKeluar(true)}
+            className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs text-red-500 hover:bg-red-50"
           >
             <span className="flex items-center gap-3 font-semibold">
               <LogOut className="w-4 h-4 text-red-500" />
@@ -114,10 +114,39 @@ export default function AkunPage() {
             <ChevronRight className="w-4 h-4 text-red-500" />
           </button>
         </div>
-      </main>
+      </div>
 
-      {/* ---------- ORNAMEN BAWAH ---------- */}
-      <BottomOrnament />
+      {/* Modal konfirmasi keluar */}
+      {konfirmasiKeluar && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+          onClick={() => setKonfirmasiKeluar(false)}
+        >
+          <div
+            className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 className="text-base font-bold text-slate-800">Keluar dari akun?</h3>
+            <p className="mt-2 text-xs text-slate-500">
+              Kamu perlu masuk lagi untuk mengakses akunmu.
+            </p>
+            <div className="mt-6 flex justify-end gap-3">
+              <button
+                onClick={() => setKonfirmasiKeluar(false)}
+                className="rounded-xl border border-slate-200 px-4 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50"
+              >
+                Batal
+              </button>
+              <button
+                onClick={keluar}
+                className="rounded-xl bg-red-500 px-4 py-2 text-xs font-medium text-white hover:bg-red-600"
+              >
+                Keluar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
