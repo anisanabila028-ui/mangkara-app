@@ -10,7 +10,7 @@ interface TopbarProps {
 export default function Topbar({ onMenuClick }: TopbarProps) {
   return (
     <>
-      <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-slate-200 bg-white px-6">
+      <header className="sticky top-0 z-30 flex h-14 w-full items-center justify-between border-b border-slate-200 bg-white px-4 sm:h-16 sm:px-6">
         {/* SISI KIRI: Tombol Hamburger & Tagline Aplikasi */}
         <div className="flex items-center gap-4">
           <button
