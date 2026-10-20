@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -42,22 +41,23 @@ export default function AkunPage() {
   }
 
   return (
-    <div className="relative flex min-h-screen flex-col overflow-hidden bg-[#f0f6ff] px-4 pb-28 pt-5 sm:px-6 sm:pb-36 sm:pt-7 lg:px-8">
-      <main className="relative z-10 mx-auto w-full max-w-[1100px] space-y-4 sm:space-y-5">
+    <div className="min-h-screen bg-[#f0f6ff] flex flex-col justify-between relative pb-28 sm:pb-36 px-4 py-5 sm:px-6 lg:px-8">
+      <main className="w-full max-w-full mx-auto space-y-6">
+        
         {/* HEADER HALAMAN */}
         <header>
-          <h1 className="text-xl font-bold leading-snug text-gray-900 sm:text-2xl">
+          <h1 className="text-xl font-bold leading-snug text-gray-900 sm:text-2xl lg:text-3xl">
             Akun Saya
           </h1>
-          <p className="mt-1 text-xs leading-relaxed text-gray-500 sm:text-sm">
+          <p className="mt-1 text-xs sm:text-sm leading-relaxed text-gray-500">
             Kelola informasi profil, preferensi tempat PKL, dan akun Anda.
           </p>
         </header>
 
         {/* KARTU PROFIL */}
-        <section className="flex items-center gap-3.5 rounded-xl border border-gray-200/80 bg-white p-4 shadow-sm sm:p-5">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#1976ff] text-white sm:h-14 sm:w-14">
-            <User className="h-7 w-7 sm:h-8 sm:w-8" strokeWidth={1.8} />
+        <section className="flex items-center gap-4 rounded-2xl border border-gray-200/80 bg-white p-5 sm:p-6 shadow-sm">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#1976ff] text-white sm:h-16 sm:w-16">
+            <User className="h-8 w-8 sm:h-9 sm:w-9" strokeWidth={1.8} />
           </div>
 
           <div className="min-w-0 flex-1">
@@ -65,95 +65,93 @@ export default function AkunPage() {
               <h2 className="text-base font-bold text-gray-900 sm:text-lg">
                 Aisyah Putri
               </h2>
-              <span className="rounded-md bg-blue-50 px-2 py-0.5 text-[10px] font-semibold text-[#1976ff]">
+              <span className="rounded-md bg-blue-50 px-2 py-0.5 text-[10px] sm:text-xs font-semibold text-[#1976ff]">
                 Siswa
               </span>
             </div>
 
-            <p className="mt-1 break-words text-[11px] text-gray-500 sm:text-xs">
+            <p className="mt-1 break-words text-xs text-gray-400">
               aisyah.putri@email.com
             </p>
           </div>
         </section>
 
-        {/* GRID INFORMASI DAN MENU */}
-        <div className="grid grid-cols-1 items-start gap-4 sm:gap-5 lg:grid-cols-[minmax(0,1fr)_248px] xl:grid-cols-[minmax(0,1fr)_280px]">
-          {/* INFORMASI SEKOLAH */}
-          <section className="min-w-0 rounded-xl border border-gray-200/80 bg-white p-4 shadow-sm sm:p-5">
-            <h3 className="mb-4 text-sm font-bold text-gray-900">
+        {/* GRID INFORMASI SEKOLAH & MENU AKUN */}
+        {/* Mobile: 1 Kolom Menumpuk, Desktop (lg:): Grid 2 Kolom Sejajar */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-start gap-5">
+          
+          {/* INFORMASI SEKOLAH (Desktop: Sisi Kiri Lebar) */}
+          <section className="lg:col-span-8 rounded-2xl border border-gray-200/80 bg-white p-5 sm:p-6 shadow-sm">
+            <h3 className="mb-4 text-sm sm:text-base font-bold text-gray-900">
               Informasi Sekolah
             </h3>
 
-            <div className="space-y-3.5">
+            <div className="space-y-4">
               <div>
-                <p className="text-[10px] text-gray-400 sm:text-[11px]">
+                <p className="text-[10px] sm:text-xs text-gray-400">
                   Jurusan
                 </p>
-                <p className="mt-0.5 text-xs font-bold leading-relaxed text-gray-900">
+                <p className="mt-0.5 text-xs sm:text-sm font-bold text-gray-900">
                   RPL (Rekayasa Perangkat Lunak)
                 </p>
               </div>
 
               <div>
-                <p className="text-[10px] text-gray-400 sm:text-[11px]">
+                <p className="text-[10px] sm:text-xs text-gray-400">
                   Sekolah
                 </p>
-                <p className="mt-0.5 text-xs font-bold text-gray-900">
+                <p className="mt-0.5 text-xs sm:text-sm font-bold text-gray-900">
                   SMK Negeri 1 Bandung
                 </p>
               </div>
 
               <div>
-                <p className="text-[10px] text-gray-400 sm:text-[11px]">
+                <p className="text-[10px] sm:text-xs text-gray-400">
                   Bergabung Sejak
                 </p>
-                <p className="mt-0.5 text-xs font-bold text-gray-900">
+                <p className="mt-0.5 text-xs sm:text-sm font-bold text-gray-900">
                   10 Mei 2024
                 </p>
               </div>
             </div>
           </section>
 
-          {/* MENU AKUN */}
+          {/* MENU AKUN (Desktop: Sisi Kanan Sejajar) */}
           <nav
             aria-label="Menu akun"
-            className="min-w-0 rounded-xl border border-gray-200/80 bg-white p-2 shadow-sm sm:p-2.5 lg:p-2"
+            className="lg:col-span-4 rounded-2xl border border-gray-200/80 bg-white p-2.5 sm:p-3 shadow-sm space-y-1"
           >
             {menuItems.map(({ label, href, icon: Icon }) => (
               <Link
                 key={label}
                 href={href}
-                className="flex min-h-10 items-center justify-between gap-2 rounded-lg px-3 py-3 text-xs text-gray-600 transition hover:bg-blue-50 hover:text-blue-600 sm:px-3.5 lg:px-2.5"
+                className="flex items-center justify-between gap-2 rounded-xl px-3.5 py-3 text-xs sm:text-sm text-gray-700 transition hover:bg-blue-50 hover:text-blue-600"
               >
-                <span className="flex min-w-0 items-center gap-2.5">
-                  <Icon className="h-4 w-4 shrink-0 text-slate-500" />
+                <span className="flex items-center gap-3">
+                  <Icon className="h-4 w-4 shrink-0 text-gray-500" />
                   <span className="font-medium">{label}</span>
                 </span>
 
-                <ChevronRight className="h-4 w-4 shrink-0 text-slate-500" />
+                <ChevronRight className="h-4 w-4 shrink-0 text-gray-400" />
               </Link>
             ))}
 
             <button
               type="button"
               onClick={() => setKonfirmasiKeluar(true)}
-              className="flex min-h-10 w-full items-center justify-between gap-2 rounded-lg px-3 py-3 text-xs text-red-500 transition hover:bg-red-50 sm:px-3.5 lg:px-2.5"
+              className="flex w-full items-center justify-between gap-2 rounded-xl px-3.5 py-3 text-xs sm:text-sm text-red-500 transition hover:bg-red-50"
             >
-              <span className="flex min-w-0 items-center gap-2.5">
-                <LogOut className="h-4 w-4 shrink-0" />
+              <span className="flex items-center gap-3">
+                <LogOut className="h-4 w-4 shrink-0 text-red-500" />
                 <span className="font-semibold">Keluar</span>
               </span>
 
-              <ChevronRight className="h-4 w-4 shrink-0" />
+              <ChevronRight className="h-4 w-4 shrink-0 text-red-400" />
             </button>
           </nav>
+
         </div>
       </main>
-
-      {/* ORNAMEN BAWAH */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-24 overflow-hidden sm:h-32 lg:h-40">
-
-      </div>
 
       {/* MODAL KONFIRMASI KELUAR */}
       {konfirmasiKeluar && (
