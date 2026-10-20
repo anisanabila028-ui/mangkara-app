@@ -145,76 +145,78 @@ export default function RekomendasiPage() {
                 </div>
             )}
 
-            {/* ---------- DAFTAR KARTU ---------- */}
-            <div className="mt-5 max-w-4xl space-y-3.5 sm:mt-7 sm:space-y-4">
-                {daftarRekomendasi.map((tempat) => (
-                    <article
-                        key={tempat.id}
-                        className="flex flex-col gap-3 rounded-2xl border border-gray-200/80 bg-white p-3.5 shadow-sm transition hover:shadow-md"
+           { /* ---------- DAFTAR KARTU ---------- */}
+<div className="mt-5 max-w-4xl space-y-3.5 sm:mt-7 sm:space-y-4">
+    {daftarRekomendasi.map((tempat) => (
+        <article
+            key={tempat.id}
+            className="rounded-2xl border border-gray-200/80 bg-white p-3.5 sm:p-4 shadow-sm transition hover:shadow-md"
+        >
+            {/* Bungkus dengan Flex: Di mobile menumpuk ke bawah (flex-col), di desktop sejajar menyamping (sm:flex-row) */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3.5">
+                
+                {/* BAGIAN KIRI: FOTO + INFORMASI */}
+                <div className="flex items-center gap-3.5 min-w-0">
+                    {/* Thumbnail */}
+                    <div className="relative h-14 w-20 sm:h-16 sm:w-24 shrink-0 overflow-hidden rounded-xl bg-slate-100">
+                        <Building2 size={22} className="absolute inset-0 m-auto text-slate-300" />
+
+                        <img
+                            src={tempat.gambar}
+                            alt={tempat.nama}
+                            loading="lazy"
+                            className="absolute inset-0 h-full w-full object-cover"
+                            onError={(e) => {
+                                e.currentTarget.style.display = "none";
+                            }}
+                        />
+                    </div>
+
+                    {/* Teks */}
+                    <div className="min-w-0 flex-1">
+                        <h2 className="text-sm sm:text-base font-bold text-gray-900 truncate">
+                            {tempat.nama}
+                        </h2>
+
+                        <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500">
+                            {/* Lokasi */}
+                            <span className="flex shrink-0 items-center gap-1">
+                                <MapPin size={12} className="text-gray-400" />
+                                {tempat.lokasi}
+                            </span>
+
+                            {/* Kuota */}
+                            <span className="shrink-0">
+                                Sisa Kuota:{" "}
+                                <b className="text-blue-600 font-semibold">
+                                    {tempat.kuota}
+                                </b>
+                            </span>
+
+                            {/* Rating */}
+                            <span className="flex shrink-0 items-center gap-1 font-semibold text-[#f5a400]">
+                                <Star size={12} fill="currentColor" className="shrink-0" />
+                                {tempat.rating}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* BAGIAN KANAN: TOMBOL KUNING LIHAT DETAIL */}
+                <div className="shrink-0">
+                    <button
+                        type="button"
+                        onClick={() => router.push(`/dashboard/detail/${tempat.id}`)}
+                        className="w-full sm:w-auto rounded-lg border border-[#f5c43b] bg-[#fff082] hover:bg-[#ffe566] px-4 py-1.5 text-xs font-semibold text-[#1976ff] transition active:scale-[0.98] inline-block text-center"
                     >
-                        {/* BAGIAN ATAS: FOTO + INFORMASI */}
-                        <div className="flex items-center gap-3.5">
-                            {/* Thumbnail */}
-                            <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-xl bg-slate-100">
-                                <Building2 size={22} className="absolute inset-0 m-auto text-slate-300" />
+                        Lihat Detail
+                    </button>
+                </div>
 
-                                <img
-                                    src={tempat.gambar}
-                                    alt={tempat.nama}
-                                    loading="lazy"
-                                    className="absolute inset-0 h-full w-full object-cover"
-                                    onError={(e) => {
-                                        e.currentTarget.style.display = "none";
-                                    }}
-                                />
-                            </div>
-
-                            {/* Teks */}
-                            <div className="min-w-0 flex-1">
-                                <h2 className="text-sm font-bold text-gray-900 truncate">
-                                    {tempat.nama}
-                                </h2>
-
-                                <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500">
-                                    {/* Lokasi */}
-                                    <span className="flex shrink-0 items-center gap-1">
-                                        <MapPin size={12} className="text-gray-400" />
-                                        {tempat.lokasi}
-                                    </span>
-
-                                    {/* Kuota */}
-                                    <span className="shrink-0">
-                                        Sisa Kuota:{" "}
-                                        <b className="text-blue-600 font-semibold">
-                                            {tempat.kuota}
-                                        </b>
-                                    </span>
-
-                                    {/* Rating */}
-                                    <span className="flex shrink-0 items-center gap-1 font-semibold text-[#f5a400]">
-                                        <Star size={12} fill="currentColor" className="shrink-0" />
-                                        {tempat.rating}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* BAGIAN BAWAH: TOMBOL KUNING LIHAT DETAIL */}
-                        <div>
-                            <button
-                                type="button"
-                                onClick={() => router.push(`/dashboard/detail/${tempat.id}`)}
-                                className="rounded-lg border border-[#f5c43b] bg-[#fff082] hover:bg-[#ffe566] px-4 py-1.5 text-xs font-semibold text-[#1976ff] transition active:scale-[0.98] inline-block"
-                            >
-                                Lihat Detail
-                            </button>
-                        </div>
-                    </article>
-                ))}
             </div>
-
-            {/* ---------- ORNAMEN BAWAH ---------- */}
-            <BottomOrnament />
-        </main>
-    );
+        </article>
+    ))}
+</div>
+</main>
+);
 }
